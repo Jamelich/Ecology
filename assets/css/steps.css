@@ -1,0 +1,264 @@
+/* eco-steps-style.css - стили для блока "Этапы работы" */
+
+/* Основная секция */
+.eco-steps-section {
+    background: var(--color-white);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.eco-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Заголовок */
+.eco-steps-heading {
+    text-align: center;
+    margin-bottom: 60px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.eco-steps-heading.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.eco-steps-heading h2 {
+    font-size: var(--font-size-xxl);
+    color: var(--color-black);
+    margin-bottom: 20px;
+    font-weight: var(--font-weight-bold);
+    text-transform: none;
+}
+
+.eco-heading-line {
+    width: 120px;
+    height: 4px;
+    background: var(--gradient-eco-horizontal);
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+/* Сетка этапов - 6 колонок для гибкости */
+.eco-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: stretch; /* Карточки растягиваются на всю высоту строки */
+}
+
+/* Карточка этапа */
+.eco-step-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    position: relative;
+    border: 2px solid rgba(139, 197, 61, 0.3);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: all var(--transition);
+    overflow: hidden;
+    height: auto; /* Автоматическая высота */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease, all var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.eco-step-card.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Распределение карточек:
+   Блоки 1-3: по 2 колонки из 6 (33.3%)
+   Блоки 4-5: по 3 колонки из 6 (50%) */
+.eco-step-card:nth-child(1),
+.eco-step-card:nth-child(2),
+.eco-step-card:nth-child(3) {
+    grid-column: span 2; /* 2/6 = 33.3% */
+}
+
+.eco-step-card:nth-child(4),
+.eco-step-card:nth-child(5) {
+    grid-column: span 3; /* 3/6 = 50% */
+}
+
+/* Эффект при наведении */
+.eco-step-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(44, 120, 32, 0.1);
+    border-color: var(--color-eco-green);
+}
+
+/* Градиентная рамка при наведении */
+.eco-step-card:hover::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-eco-horizontal);
+    border-radius: calc(var(--radius-lg) + 2px);
+    z-index: -1;
+    opacity: 0.3;
+}
+
+/* Номер этапа */
+.eco-step-number {
+    font-size: 48px;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-eco-forest);
+    opacity: 0.2;
+    line-height: 1;
+    margin-bottom: 15px;
+    position: relative;
+    flex-shrink: 0; /* Не сжимается */
+}
+
+/* Полоска под номером */
+.eco-step-number::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--gradient-eco-horizontal);
+    border-radius: 1.5px;
+}
+
+/* Контент этапа */
+.eco-step-content {
+    flex-grow: 1; /* Занимает всё доступное пространство */
+    display: flex;
+    flex-direction: column;
+}
+
+.eco-step-content h3 {
+    font-size: var(--font-size-large);
+    color: var(--color-black);
+    margin-bottom: 15px;
+    font-weight: var(--font-weight-semibold);
+    min-height: 56px;
+    flex-shrink: 0; /* Заголовок не сжимается */
+}
+
+.eco-step-content p {
+    color: var(--color-text);
+    line-height: 1.6;
+    margin: 0;
+    font-size: var(--font-size-base);
+    flex-grow: 1; /* Параграф растягивается */
+}
+
+/* Иконка этапа */
+.eco-step-icon {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--color-eco-fresh), var(--color-eco-green));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Иконка не сжимается */
+}
+
+.eco-step-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--color-white);
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .eco-steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .eco-step-card:nth-child(1),
+    .eco-step-card:nth-child(2),
+    .eco-step-card:nth-child(3),
+    .eco-step-card:nth-child(4),
+    .eco-step-card:nth-child(5) {
+        grid-column: span 1; /* Все по 1 колонке из 2 (50%) */
+    }
+    
+    .eco-step-content h3 {
+        min-height: 48px; /* Меньше на планшетах */
+    }
+}
+
+@media (max-width: 768px) {
+    .eco-steps-section {
+        padding: 60px 0;
+    }
+    
+    .eco-steps-heading h2 {
+        font-size: var(--font-size-xl);
+    }
+    
+    .eco-steps-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .eco-step-card {
+        padding: 25px;
+    }
+    
+    .eco-step-card:nth-child(1),
+    .eco-step-card:nth-child(2),
+    .eco-step-card:nth-child(3),
+    .eco-step-card:nth-child(4),
+    .eco-step-card:nth-child(5) {
+        grid-column: span 1; /* Все по 1 колонке (100%) */
+    }
+    
+    .eco-step-content h3 {
+        min-height: auto; /* Авто высота на мобильных */
+        font-size: var(--font-size-base);
+        margin-bottom: 10px;
+    }
+    
+    .eco-step-number {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .eco-steps-section {
+        padding: 40px 0;
+    }
+    
+    .eco-steps-heading h2 {
+        font-size: var(--font-size-larger);
+    }
+    
+    .eco-step-card {
+        padding: 20px;
+        border-width: 1px;
+    }
+    
+    .eco-step-icon {
+        top: 20px;
+        right: 20px;
+        width: 32px;
+        height: 32px;
+    }
+    
+    .eco-step-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+}

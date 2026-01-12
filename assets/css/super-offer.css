@@ -1,0 +1,505 @@
+/* super-offer.css - ПЕРЕРАБОТАННЫЙ В ЭКО-СТИЛЕ */
+
+/* Блок суперпредложения с фоном */
+.super-offer-section {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-dark-bg);
+}
+
+/* Фоновое изображение */
+.super-offer-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+/* Затемнение фона - СРЕДНЯЯ ПРОЗРАЧНОСТЬ */
+.super-offer-overlay {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(45deg, 
+        rgba(0, 0, 0, 0.88) 0%, 
+        rgba(0, 0, 0, 0.84) 100%);
+}
+
+/* Контейнер */
+.super-offer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Контент */
+.super-offer-content {
+    padding: 80px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    position: relative;
+}
+
+/* Декоративные эко-элементы */
+.super-offer-content::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, 
+        var(--color-eco-vibrant) 0%, 
+        transparent 70%);
+    opacity: 0.03;
+    z-index: 0;
+    border-radius: 50%;
+}
+
+.super-offer-content::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, 
+        var(--color-eco-green) 0%, 
+        transparent 70%);
+    opacity: 0.02;
+    z-index: 0;
+    border-radius: 50%;
+}
+
+.super-offer-text-wrapper {
+    max-width: 800px;
+    width: 100%;
+    color: white;
+    text-align: center;
+    position: relative;
+    z-index: 3;
+}
+
+/* Подзаголовок с эко-стилем */
+.super-offer-subheader {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-eco-vibrant);
+    margin-bottom: 25px;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 1, 0.1) 0%, 
+        rgba(139, 197, 61, 0.1) 100%);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 1, 0.2);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.super-offer-subheader.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Эффект сияния для подзаголовка */
+.super-offer-subheader::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 1, 0.2), 
+        transparent);
+    transition: left 0.6s ease;
+}
+
+.super-offer-subheader:hover::before {
+    left: 100%;
+}
+
+/* Заголовок с градиентом */
+.super-offer-title {
+    font-size: 2.8rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    margin: 0 0 25px 0;
+    background: linear-gradient(135deg, 
+        var(--color-white) 0%,
+        var(--color-eco-vibrant) 30%,
+        var(--color-eco-fresh) 50%,
+        var(--color-white) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.super-offer-title.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Декоративные элементы заголовка */
+.super-offer-title::before,
+.super-offer-title::after {
+    content: '✦';
+    position: absolute;
+    color: var(--color-eco-vibrant);
+    opacity: 0.3;
+    font-size: 1.5rem;
+}
+
+.super-offer-title::before {
+    top: -10px;
+    left: -40px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.super-offer-title::after {
+    bottom: -10px;
+    right: -40px;
+    animation: float 3s ease-in-out infinite reverse;
+    animation-delay: 1.5s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(180deg); }
+}
+
+/* Описание */
+.super-offer-description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.92);
+    margin-bottom: 35px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.super-offer-description.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.super-offer-description p {
+    margin: 0 0 15px 0;
+}
+
+.super-offer-description p:last-child {
+    margin-bottom: 0;
+}
+
+.super-offer-description strong {
+    color: var(--color-eco-vibrant);
+    background: linear-gradient(120deg, 
+        rgba(255, 255, 1, 0.1) 0%, 
+        transparent 50%);
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: var(--font-weight-semibold);
+}
+
+.super-offer-description em {
+    color: var(--color-eco-fresh);
+    font-style: italic;
+}
+
+/* Стили для списков как в about-company */
+.super-offer-description ul {
+    margin: 20px 0;
+    padding-left: 0;
+    list-style: none;
+    display: inline-block;
+    text-align: left;
+}
+
+.super-offer-description ul li {
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 30px;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+/* Кастомные маркеры для списков как в about-company */
+.super-offer-description ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 16px;
+    height: 16px;
+    background: var(--gradient-eco-vertical);
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(139, 197, 61, 0.3);
+}
+
+/* Галочка внутри кружка */
+.super-offer-description ul li::after {
+    content: '✓';
+    position: absolute;
+    left: 4px;
+    top: 7px;
+    font-size: 10px;
+    color: var(--color-white);
+    font-weight: var(--font-weight-bold);
+}
+
+/* Ссылка/Кнопка в эко-стиле */
+.super-offer-action {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    margin-top: 40px;
+}
+
+.super-offer-action.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.super-offer-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 40px;
+    background: var(--gradient-eco-horizontal);
+    color: var(--color-black);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: var(--font-weight-bold);
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 8px 25px rgba(44, 120, 32, 0.3),
+        0 0 0 1px rgba(255, 255, 1, 0.2);
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Эффект свечения кнопки */
+.super-offer-link::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-eco-horizontal);
+    z-index: -1;
+    filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 52px;
+}
+
+.super-offer-link:hover::before {
+    opacity: 0.6;
+}
+
+/* Эффект волны при наведении */
+.super-offer-link::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.super-offer-link:hover::after {
+    width: 200px;
+    height: 200px;
+}
+
+.super-offer-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 12px 30px rgba(44, 120, 32, 0.4),
+        0 0 0 1px rgba(255, 255, 1, 0.3);
+    letter-spacing: 1.5px;
+}
+
+.super-offer-link:active {
+    transform: translateY(-1px);
+    transition: all 0.1s ease;
+}
+
+/* Иконка стрелки в кнопке */
+.super-offer-link i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.super-offer-link:hover i {
+    transform: translateX(5px);
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .super-offer-section {
+        padding: 70px 0;
+    }
+
+    .super-offer-content {
+        padding: 70px 0;
+        min-height: 350px;
+    }
+
+    .super-offer-title {
+        font-size: 2.5rem;
+    }
+    
+    .super-offer-title::before,
+    .super-offer-title::after {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .super-offer-section {
+        padding: 60px 0;
+    }
+
+    .super-offer-content {
+        padding: 60px 0;
+        min-height: 300px;
+    }
+
+    .super-offer-title {
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+    }
+
+    .super-offer-description {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+    }
+
+    .super-offer-link {
+        padding: 14px 35px;
+        font-size: 1.1rem;
+    }
+
+    .super-offer-action {
+        margin-top: 35px;
+    }
+    
+    .super-offer-content::before,
+    .super-offer-content::after {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .super-offer-section {
+        padding: 50px 0;
+    }
+
+    .super-offer-content {
+        padding: 50px 0;
+        min-height: 250px;
+    }
+
+    .super-offer-title {
+        font-size: 1.9rem;
+    }
+
+    .super-offer-description {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .super-offer-subheader {
+        font-size: 12px;
+        letter-spacing: 2px;
+        padding: 8px 20px;
+    }
+
+    .super-offer-link {
+        padding: 13px 30px;
+        font-size: 1rem;
+        width: 100%;
+        max-width: 280px;
+        box-sizing: border-box;
+    }
+
+    .super-offer-action {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 360px) {
+    .super-offer-section {
+        padding: 40px 0;
+    }
+
+    .super-offer-content {
+        padding: 40px 0;
+        min-height: 220px;
+    }
+
+    .super-offer-title {
+        font-size: 1.7rem;
+    }
+
+    .super-offer-description {
+        font-size: 0.95rem;
+    }
+
+    .super-offer-link {
+        padding: 12px 25px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+    .super-offer-overlay {
+        background: linear-gradient(45deg, 
+            rgba(0, 0, 0, 0.9) 0%, 
+            rgba(0, 0, 0, 0.88) 100%);
+    }
+    
+    .super-offer-description {
+        color: rgba(255, 255, 255, 0.94);
+    }
+    
+    .super-offer-description ul li {
+        color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .super-offer-content::before {
+        opacity: 0.04;
+    }
+}

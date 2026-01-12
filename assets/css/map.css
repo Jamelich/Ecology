@@ -1,0 +1,152 @@
+/* map-simple.css - стили для простого блока с картой */
+
+/* Основная секция */
+.simple-map-section {
+    background: var(--color-white);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.simple-map-container {
+    position: relative;
+}
+
+/* Заголовок */
+.simple-map-heading {
+    text-align: center;
+    margin-bottom: 50px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.simple-map-heading.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.simple-map-heading h2 {
+    font-size: var(--font-size-xxl);
+    color: var(--color-black);
+    margin-bottom: 20px;
+    font-weight: var(--font-weight-bold);
+    text-transform: none;
+}
+
+.simple-map-line {
+    width: 120px;
+    height: 4px;
+    background: var(--gradient-eco-horizontal);
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+/* Обертка для карты */
+.map-iframe-wrapper {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(139, 197, 61, 0.2);
+    transition: all var(--transition);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease, all var(--transition);
+}
+
+.map-iframe-wrapper.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Если iframe нет, показываем заглушку */
+.map-iframe-wrapper:empty::before {
+    content: 'Карта будет загружена здесь';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+    background: linear-gradient(45deg, 
+        rgba(139, 197, 61, 0.1) 0%, 
+        rgba(201, 238, 2, 0.07) 100%);
+    color: var(--color-text-light);
+    font-size: var(--font-size-large);
+    border-radius: var(--radius-lg);
+    border: 2px dashed rgba(139, 197, 61, 0.3);
+}
+
+.map-iframe-wrapper iframe {
+    display: block;
+    border: none;
+    border-radius: var(--radius-lg);
+    width: 100%;
+    min-height: 500px;
+}
+
+/* Эффект при наведении на обертку */
+.map-iframe-wrapper:hover {
+    box-shadow: 0 15px 50px rgba(44, 120, 32, 0.15);
+    border-color: rgba(139, 197, 61, 0.4);
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+    .simple-map-section {
+        padding: 70px 0;
+    }
+    
+    .simple-map-heading h2 {
+        font-size: var(--font-size-xl);
+    }
+    
+    .map-iframe-wrapper iframe {
+        min-height: 450px;
+    }
+    
+    .map-iframe-wrapper:empty::before {
+        min-height: 450px;
+    }
+}
+
+@media (max-width: 768px) {
+    .simple-map-section {
+        padding: 60px 0;
+    }
+    
+    .simple-map-heading {
+        margin-bottom: 40px;
+    }
+    
+    .simple-map-heading h2 {
+        font-size: var(--font-size-larger);
+    }
+    
+    .map-iframe-wrapper iframe {
+        min-height: 400px;
+    }
+    
+    .map-iframe-wrapper:empty::before {
+        min-height: 400px;
+        font-size: var(--font-size-base);
+    }
+}
+
+@media (max-width: 480px) {
+    .simple-map-section {
+        padding: 50px 0;
+    }
+    
+    .simple-map-heading h2 {
+        font-size: var(--font-size-large);
+    }
+    
+    .map-iframe-wrapper iframe {
+        min-height: 350px;
+    }
+    
+    .map-iframe-wrapper:empty::before {
+        min-height: 350px;
+        font-size: var(--font-size-base);
+    }
+}

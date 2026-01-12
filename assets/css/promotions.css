@@ -1,0 +1,430 @@
+/* promotions-dark-optimized.css - БЫСТРЫЙ И КРАСИВЫЙ */
+
+.promotions-section {
+    padding: 90px 0;
+    position: relative;
+    overflow: hidden;
+    background-color: #0a0a0a; /* Фолбэк цвет на случай если картинка не загрузится */
+}
+
+/* Контейнер для картинки фона */
+.promotions-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* Затемняющий оверлей */
+.promotions-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Затемнение 60% */
+    z-index: 1;
+}
+
+/* ЛЁГКИЙ ФОНОВЫЙ ЭФФЕКТ (без анимации) */
+.promotions-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, 
+            rgba(44, 120, 32, 0.1) 0%, 
+            transparent 40%);
+    opacity: 0.3;
+    z-index: 0;
+}
+
+/* ЗАГОЛОВОК - СТАТИЧНЫЙ, НО КРАСИВЫЙ */
+.promotions-header {
+    text-align: center;
+    margin-bottom: 70px;
+    position: relative;
+    z-index: 2;
+}
+
+.promotions-title {
+    font-size: 3.2rem;
+    color: transparent;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg,
+        #ffffff 0%,
+        var(--color-eco-fresh) 50%,
+        #ffffff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: 
+        0 0 20px rgba(139, 197, 61, 0.2);
+}
+
+/* ПОЛОСКА ПОД ЗАГОЛОВКОМ КАК В ЛИД БЛОКЕ */
+.promotions-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px; /* Высота как в лид блоке (было 3px) */
+    background: var(--gradient-eco-horizontal); /* Градиент как в лид блоке */
+    border-radius: 2px; /* Радиус как в лид блоке */
+}
+
+.promotions-subtitle {
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 300;
+    margin-top: 25px;
+    position: relative;
+    display: inline-block;
+    padding: 10px 25px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    letter-spacing: 0.5px;
+}
+
+/* СЕТКА */
+.promotions-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* КАРТОЧКИ - ОПТИМИЗИРОВАННЫЕ */
+.promotion-card {
+    position: relative;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ЛЁГКОЕ СВЕЧЕНИЕ ПРИ НАВЕДЕНИИ (без сложных анимаций) */
+.promotion-card::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(45deg,
+        rgba(255, 255, 1, 0),
+        rgba(139, 197, 61, 0),
+        rgba(255, 255, 1, 0));
+    border-radius: calc(var(--radius-lg) + 2px);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.promotion-card:hover::before {
+    opacity: 1;
+    background: linear-gradient(45deg,
+        rgba(255, 255, 1, 0.1),
+        rgba(139, 197, 61, 0.2),
+        rgba(255, 255, 1, 0.1));
+}
+
+/* ОСНОВА КАРТОЧКИ - ПРОСТАЯ И БЫСТРАЯ */
+.promotion-card__inner {
+    background: linear-gradient(145deg,
+        rgba(40, 40, 40, 0.95) 0%,
+        rgba(30, 30, 30, 0.98) 100%);
+    border-radius: 12px;
+    padding: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    
+    /* Минимальные тени для производительности */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ПРОСТОЙ ЭФФЕКТ ПОДЪЕМА */
+.promotion-card:hover {
+    transform: translateY(-8px);
+}
+
+.promotion-card:hover .promotion-card__inner {
+    background: linear-gradient(145deg,
+        rgba(50, 50, 50, 0.95) 0%,
+        rgba(35, 35, 35, 0.98) 100%);
+    border-color: rgba(139, 197, 61, 0.3);
+    box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(139, 197, 61, 0.2);
+}
+
+/* ЗАГОЛОВОК КАРТОЧКИ */
+.promotion-card__header {
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+/* АКЦЕНТНАЯ ЛИНИЯ КАК В ЛИД БЛОКЕ */
+.promotion-card__header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 4px; /* Высота как в лид блоке (было 2px) */
+    background: var(--gradient-eco-horizontal); /* Градиент как в лид блоке */
+    border-radius: 2px; /* Радиус как в лид блоке */
+    transition: width 0.3s ease;
+}
+
+.promotion-card:hover .promotion-card__header::after {
+    width: 60px;
+}
+
+.promotion-card__title {
+    font-size: 1.3rem;
+    color: #ffffff;
+    line-height: 1.5;
+    margin: 0;
+    font-weight: 600;
+}
+
+.promotion-card:hover .promotion-card__title {
+    color: var(--color-eco-fresh);
+}
+
+/* ОПИСАНИЕ */
+.promotion-card__description {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
+    margin: 0 0 20px 0;
+    padding-left: 15px;
+    border-left: 2px solid rgba(139, 197, 61, 0.2);
+    transition: border-color 0.3s ease;
+}
+
+.promotion-card:hover .promotion-card__description {
+    border-left-color: rgba(139, 197, 61, 0.4);
+}
+
+/* СКИДКА - БЕЗ СЛОЖНЫХ АНИМАЦИЙ */
+.promotion-card__discount {
+    display: inline-block;
+    padding: 8px 16px;
+    background: linear-gradient(135deg,
+        rgba(255, 255, 1, 0.15) 0%,
+        rgba(139, 197, 61, 0.15) 100%);
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: 6px;
+    margin-top: 15px;
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ПРОСТОЙ ЭФФЕКТ ПРИ НАВЕДЕНИИ */
+.promotion-card__discount::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent);
+    transition: left 0.6s ease;
+}
+
+.promotion-card:hover .promotion-card__discount {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 1, 0.2) 0%,
+        rgba(139, 197, 61, 0.2) 100%);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 16px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.promotion-card:hover .promotion-card__discount::after {
+    left: 100%;
+}
+
+/* КНОПКА - ОПТИМИЗИРОВАННАЯ */
+.promotion-card__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 14px 24px;
+    background: linear-gradient(135deg,
+        rgba(255, 255, 1, 0.9) 0%,
+        rgba(139, 197, 61, 0.9) 100%);
+    color: #000;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 6px 20px rgba(44, 120, 32, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+/* ПРОСТОЙ HOVER-ЭФФЕКТ */
+.promotion-card__button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+.promotion-card__button:hover::after {
+    width: 200px;
+    height: 200px;
+}
+
+.promotion-card__button:hover {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 1, 1) 0%,
+        rgba(139, 197, 61, 1) 100%);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 10px 25px rgba(44, 120, 32, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    letter-spacing: 1.2px;
+}
+
+.promotion-card__button:active {
+    transform: translateY(-1px);
+    transition: all 0.1s ease;
+}
+
+/* АДАПТИВНОСТЬ */
+@media (max-width: 1200px) {
+    .promotions-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .promotions-title {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .promotions-section {
+        padding: 70px 0;
+    }
+    
+    .promotions-title {
+        font-size: 2.3rem;
+    }
+    
+    .promotions-subtitle {
+        font-size: 1rem;
+        padding: 8px 20px;
+    }
+    
+    .promotions-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 500px;
+    }
+    
+    .promotion-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    /* На мобильных убираем лишние эффекты для скорости */
+    .promotion-card::before {
+        display: none;
+    }
+    
+    .promotion-card__button::after {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .promotions-section {
+        padding: 60px 0;
+    }
+    
+    .promotions-title {
+        font-size: 2rem;
+    }
+    
+    .promotion-card__inner {
+        padding: 25px;
+    }
+    
+    .promotion-card__button {
+        padding: 12px 20px;
+    }
+}
+
+/* ОПТИМИЗАЦИЯ ДЛЯ СКОРОСТИ */
+@media (prefers-reduced-motion: reduce) {
+    .promotion-card,
+    .promotion-card__inner,
+    .promotion-card__button,
+    .promotion-card__discount {
+        transition: none !important;
+    }
+    
+    .promotion-card:hover {
+        transform: none !important;
+    }
+    
+    .promotion-card__button::after {
+        display: none !important;
+    }
+}

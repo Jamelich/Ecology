@@ -33,12 +33,22 @@
     display: block;
 }
 
+/* УБРАТЬ ЭФФЕКТ НАВЕДЕНИЯ С ЛОГОТИПА */
 .site-title {
     font-size: var(--font-size-xxl); /* Увеличенный размер текста логотипа */
     font-weight: var(--font-weight-bold);
     color: var(--color-text);
     text-decoration: none;
     line-height: 1.2;
+    transition: none !important; /* ОТКЛЮЧАЕМ TRANSITION */
+}
+
+.site-title:hover {
+    color: var(--color-text) !important; /* ЦВЕТ НЕ МЕНЯЕТСЯ */
+}
+
+.site-title::after {
+    display: none !important; /* УБИРАЕМ ПОДЧЕРКИВАНИЕ */
 }
 
 /* Слоган - УВЕЛИЧЕНА МАКСИМАЛЬНАЯ ШИРИНА */
@@ -50,7 +60,7 @@
 .slogan-text {
     font-size: var(--font-size-small);
     color: var(--color-text-light);
-    line-height: 1.4;
+    line-height: 1.2;
     font-style: italic;
 }
 
@@ -65,14 +75,15 @@
 
 .header-address {
     display: flex;
-    align-items: flex-start;
+    align-items: center; /* ИКОНКИ ПО ЦЕНТРУ ПО ВЕРТИКАЛИ */
     gap: 10px;
 }
 
 .header-worktime {
     display: flex;
-    align-items: flex-start;
+    align-items: center; /* ИКОНКИ ПО ЦЕНТРУ ПО ВЕРТИКАЛИ */
     gap: 10px;
+    width: 30%;
 }
 
 .address-icon,
@@ -81,7 +92,7 @@
 .phone-icon {
     flex-shrink: 0;
     display: flex;
-    align-items: center;
+    align-items: center; /* ИКОНКИ ПО ЦЕНТРУ ПО ВЕРТИКАЛИ */
     justify-content: center;
 }
 
@@ -92,6 +103,14 @@
     display: block;
     width: 20px; /* Крупные иконки */
     height: 20px;
+}
+
+/* ИКОНКИ ПОМЕНЯНЫ НА ЗЕЛЕНЫЙ ЦВЕТ */
+.address-icon svg,
+.worktime-icon svg,
+.contact-icon svg,
+.phone-icon svg {
+    fill: var(--color-eco-forest); /* Темно-зеленый цвет для иконок */
 }
 
 .address-text,
@@ -118,27 +137,23 @@
 
 .phone-item {
     display: flex;
-    align-items: center;
+    align-items: center; /* ИКОНКИ ПО ЦЕНТРУ ПО ВЕРТИКАЛИ */
     gap: 10px; /* Увеличен отступ */
 }
 
 .phone-link {
     text-decoration: none;
     color: var(--color-text);
-    font-size: 15px;
-    font-weight: var(--font-weight-semibold);
-    transition: color var(--transition-fast);
+    font-size: var(--font-size-small); /* ШРИФТ КАК У ВСЕХ */
+    position: relative;
+    transition: all var(--transition);
     white-space: nowrap;
-}
-
-.phone-link:hover {
-    color: var(--color-primary);
 }
 
 /* Почта теперь ПОСЛЕ телефонов */
 .contact-item.email {
     display: flex;
-    align-items: center;
+    align-items: center; /* ИКОНКИ ПО ЦЕНТРУ ПО ВЕРТИКАЛИ */
     gap: 10px; /* Увеличен отступ */
 }
 
@@ -146,11 +161,8 @@
     text-decoration: none;
     color: var(--color-text);
     font-size: var(--font-size-small);
-    transition: color var(--transition-fast);
-}
-
-.contact-item.email a:hover {
-    color: var(--color-primary);
+    position: relative;
+    transition: all var(--transition);
 }
 
 /* Мессенджеры */
@@ -169,7 +181,7 @@
     border-radius: var(--radius-lg);
     text-decoration: none;
     color: var(--color-white);
-    transition: all var(--transition-fast);
+    transition: all var(--transition);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -215,35 +227,56 @@
     height: 20px;
 }
 
-/* Кнопка заказать звонок */
+/* Кнопка заказать звонок - СДЕЛАНА КАК В ФУТЕРЕ */
 .callback-btn {
     display: flex;
     align-items: center;
-    gap: 10px; /* Увеличен отступ */
+    justify-content: center;
+    gap: 10px;
     padding: 12px 24px;
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    background: var(--gradient-eco-horizontal); /* Градиент как в футере */
+    color: var(--color-black); /* Черный текст как в футере */
     border: none;
     border-radius: var(--radius-lg);
     font-size: 15px;
     font-weight: var(--font-weight-semibold);
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: all var(--transition);
     flex-shrink: 0;
     white-space: nowrap;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(44, 120, 32, 0.3); /* Тень как в футере */
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+/* Эффект с псевдоэлементом как в футере */
+.callback-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.callback-btn:hover::before {
+    left: 100%;
 }
 
 .callback-btn:hover {
-    background-color: var(--color-primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px); /* Подъем при наведении как в футере */
+    box-shadow: 0 8px 20px rgba(44, 120, 32, 0.4); /* Тень при наведении как в футере */
+    color: var(--color-eco-forest); /* Цвет текста при наведении как в футере */
 }
 
 .callback-icon svg {
     display: block;
-    width: 18px; /* Увеличен размер иконки */
+    width: 18px;
     height: 18px;
+    fill: var(--color-black); /* Черная иконка как в футере */
 }
 
 .callback-text {
@@ -293,12 +326,17 @@
     font-weight: var(--font-weight-medium);
     padding: 8px 0;
     position: relative;
-    transition: color var(--transition-fast);
+    transition: all var(--transition);
     white-space: nowrap;
 }
 
+.main-menu a:hover::before {
+    width: 100%;
+}
+
 .main-menu a:hover {
-    color: var(--color-primary);
+    color: var(--color-eco-forest);
+    transform: translateY(-2px);
 }
 
 /* Мобильное меню */
@@ -320,7 +358,7 @@
     width: 100%;
     background-color: var(--color-text);
     border-radius: 3px;
-    transition: all var(--transition-fast);
+    transition: all var(--transition);
 }
 
 /* Адаптивность */
@@ -423,6 +461,14 @@
         flex-direction: column;
         gap: 15px;
         align-items: center;
+    }
+    
+    .main-menu a::before {
+        display: none;
+    }
+    
+    .main-menu a:hover {
+        transform: none;
     }
     
     .mobile-menu-toggle {

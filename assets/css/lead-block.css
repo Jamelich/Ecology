@@ -1,0 +1,729 @@
+/* lead-block.css - ПЕРЕРАБОТАННЫЙ В ЭКО-СТИЛЕ */
+
+/* Контакты секция */
+.lead-contacts-section {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 80px 0;
+    position: relative;
+    background-color: var(--color-white);
+    overflow: hidden;
+}
+
+/* Фоновая текстура как в about-company - ВЕРНУЛ КАК В ИЗНАЧАЛЬНОМ ВАРИАНТЕ */
+.lead-contacts-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.lead-contacts-section .lead-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.lead-contacts-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.lead-contacts-info {
+    flex: 1;
+}
+
+/* Заголовок с градиентной полоской */
+.lead-contacts-heading {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.lead-contacts-heading h2 {
+    font-size: var(--font-size-xxl);
+    color: var(--color-black);
+    margin: 0;
+    font-weight: var(--font-weight-bold);
+    position: relative;
+    padding-bottom: 20px;
+}
+
+/* Градиентная полоска под заголовком как в about-company */
+.lead-contacts-heading h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    background: var(--gradient-eco-horizontal);
+    border-radius: 2px;
+}
+
+.lead-contacts-details {
+    margin-bottom: 40px;
+}
+
+/* Контактные элементы - МЕНЬШЕ РАССТОЯНИЕ МЕЖДУ ПУНКТАМИ */
+.lead-contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    /* Уменьшено с 20px */
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    padding: 8px 0;
+    /* Уменьшено с 12px */
+    position: relative;
+}
+
+.lead-contact-item.animated {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.lead-contact-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg,
+            var(--color-eco-vibrant) 0%,
+            var(--color-eco-fresh) 100%);
+    border-radius: 50%;
+    position: relative;
+}
+
+/* Декоративный круг как в about-company */
+.lead-contact-icon::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg,
+            var(--color-eco-vibrant) 0%,
+            var(--color-eco-fresh) 50%,
+            var(--color-eco-green) 100%);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+.lead-contact-icon svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+    color: var(--color-white);
+}
+
+.lead-contact-item a,
+.lead-contact-item span {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    position: relative;
+    padding: 2px 0;
+}
+
+/* Эффект ссылки как в about-company */
+.lead-contact-item a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-eco-horizontal);
+    transition: width var(--transition);
+    border-radius: 1px;
+}
+
+.lead-contact-item a:hover {
+    color: var(--color-eco-forest);
+}
+
+.lead-contact-item a:hover::after {
+    width: 100%;
+}
+
+.lead-contact-item a:hover {
+    color: var(--color-eco-forest);
+}
+
+/* Социальные ссылки - ВЕРНУТЬ КАК БЫЛИ ИЗНАЧАЛЬНО */
+.lead-social-links {
+    display: flex;
+    gap: 12px;
+    /* Было 15px */
+    margin-top: 25px;
+    /* Было 30px */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.lead-social-links.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.lead-messenger-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    /* Было 48px */
+    height: 40px;
+    /* Было 48px */
+    border-radius: 8px;
+    /* Было 50% */
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+    /* Было cubic-bezier */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Было 0 4px 15px */
+}
+
+/* Убрать эффект волны при наведении */
+.lead-messenger-link::after {
+    display: none;
+    /* Убрано */
+}
+
+.lead-messenger-link:hover {
+    transform: translateY(-2px);
+    /* Было -3px */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    /* Было 0 8px 25px */
+}
+
+/* Telegram */
+.lead-messenger-link.tg-link {
+    background: #0088cc;
+}
+
+.lead-messenger-link.tg-link:hover {
+    background: #0077b3;
+}
+
+/* ВКонтакте */
+.lead-messenger-link.vk-link {
+    background: #0077ff;
+}
+
+.lead-messenger-link.vk-link:hover {
+    background: #0066cc;
+}
+
+/* Max */
+.lead-messenger-link.max-link {
+    background: #6e3dff;
+}
+
+.lead-messenger-link.max-link:hover {
+    background: #5a2fd4;
+}
+
+.lead-messenger-link svg {
+    display: block;
+}
+
+/* Особый стиль для иконки Max */
+.lead-messenger-link.max-link svg {
+    width: 20px;
+    /* Было 22px */
+    height: 20px;
+    /* Было 22px */
+}
+
+/* Форма */
+.lead-contacts-form {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.lead-contacts-form.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Стилизация для формы Contact Form 7 как в about-company */
+.lead-contacts-form {
+    background: var(--color-white);
+    padding: 35px;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    max-width: 500px;
+    position: relative;
+    border: 1px solid rgba(139, 197, 61, 0.1);
+}
+
+/* Декоративные элементы как в about-company */
+.lead-contacts-form .wpcf7::before,
+.lead-contacts-form .wpcf7::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.lead-contacts-form .wpcf7::before {
+    top: 15px;
+    left: 15px;
+    border-top-color: var(--color-eco-vibrant);
+    border-right-color: var(--color-eco-fresh);
+}
+
+.lead-contacts-form .wpcf7::after {
+    bottom: 15px;
+    right: 15px;
+    border-bottom-color: var(--color-eco-green);
+    border-left-color: var(--color-eco-forest);
+}
+
+.lead-contacts-form .wpcf7-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.lead-contacts-form .wpcf7-form-control-wrap {
+    margin: 0;
+    display: block;
+}
+
+.lead-contacts-form .wpcf7-form-control {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid rgba(139, 197, 61, 0.15);
+    border-radius: var(--radius-lg);
+    font-size: 15px;
+    line-height: 1.5;
+    transition: all var(--transition);
+    background: rgba(139, 197, 61, 0.03);
+    box-sizing: border-box;
+    font-family: var(--font-family-base);
+    color: var(--color-text);
+}
+
+.lead-contacts-form .wpcf7-tel {
+    height: 52px;
+}
+
+.lead-contacts-form .wpcf7-form-control:focus {
+    outline: none;
+    border-color: var(--color-eco-green);
+    background: rgba(139, 197, 61, 0.05);
+    box-shadow: 0 0 0 3px rgba(139, 197, 61, 0.1);
+}
+
+.lead-contacts-form .wpcf7-form-control::placeholder {
+    color: var(--color-text-light);
+    font-size: 15px;
+}
+
+.lead-contacts-form .wpcf7-form-control::-webkit-input-placeholder {
+    color: var(--color-text-light);
+    font-size: 15px;
+}
+
+.lead-contacts-form .wpcf7-form-control::-moz-placeholder {
+    color: var(--color-text-light);
+    font-size: 15px;
+}
+
+.lead-contacts-form .wpcf7-form-control:-ms-input-placeholder {
+    color: var(--color-text-light);
+    font-size: 15px;
+}
+
+.lead-contacts-form .wpcf7-form-control:-moz-placeholder {
+    color: var(--color-text-light);
+    font-size: 15px;
+}
+
+/* Кнопка отправки */
+.lead-contacts-form .wpcf7-submit {
+    background: var(--gradient-eco-horizontal);
+    color: var(--color-black);
+    border: none;
+    padding: 16px 28px;
+    font-size: 16px;
+    font-weight: var(--font-weight-semibold);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    height: 52px;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(44, 120, 32, 0.2);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Эффект свечения кнопки */
+.lead-contacts-form .wpcf7-submit::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-eco-horizontal);
+    z-index: -1;
+    filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: calc(var(--radius-lg) + 2px);
+}
+
+.lead-contacts-form .wpcf7-submit:hover::before {
+    opacity: 0.5;
+}
+
+.lead-contacts-form .wpcf7-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(44, 120, 32, 0.3);
+    letter-spacing: 1px;
+}
+
+.lead-contacts-form .wpcf7-submit:active {
+    transform: translateY(-1px);
+    transition: all 0.1s ease;
+}
+
+.lead-contacts-form .wpcf7-submit.has-spinner {
+    position: relative;
+}
+
+.lead-contacts-form .wpcf7-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.lead-contacts-form .wpcf7-response-output {
+    margin: 15px 0 0 0;
+    padding: 12px;
+    border-radius: var(--radius-lg);
+    font-size: 14px;
+    text-align: center;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.lead-contacts-form .wpcf7-response-output.wpcf7-validation-errors {
+    border-color: #ff6b6b;
+    background-color: #fff5f5;
+    color: #d63031;
+}
+
+.lead-contacts-form .wpcf7-response-output.wpcf7-mail-sent-ok {
+    border-color: var(--color-eco-green);
+    background-color: rgba(139, 197, 61, 0.1);
+    color: var(--color-eco-forest);
+}
+
+.lead-contacts-form .screen-reader-response {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    word-wrap: normal !important;
+}
+
+/* Фото менеджера */
+.lead-manager-photo {
+    flex: 0 0 400px;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    position: relative;
+}
+
+.lead-manager-photo.animated {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Стиль картинки как в about-company */
+.lead-manager-photo img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    transition: transform 0.3s ease;
+
+    /* Градиентная рамка */
+    border: 3px solid transparent;
+    background: linear-gradient(var(--color-white), var(--color-white)) padding-box,
+        linear-gradient(135deg,
+            var(--color-eco-vibrant) 0%,
+            var(--color-eco-fresh) 25%,
+            var(--color-eco-green) 50%,
+            var(--color-eco-forest) 100%) border-box;
+
+    /* Тень */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.lead-manager-photo img:hover {
+    transform: scale(1.02);
+    filter: brightness(1.05);
+}
+
+/* Декоративные элементы картинки */
+.lead-manager-photo::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 40px;
+    height: 40px;
+    background: var(--color-eco-vibrant);
+    border-radius: 50%;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+.lead-manager-photo::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: -15px;
+    width: 40px;
+    height: 40px;
+    background: var(--color-eco-forest);
+    border-radius: 50%;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .lead-contacts-wrapper {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .lead-manager-photo {
+        flex: 0 0 auto;
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .lead-contacts-heading h2 {
+        font-size: var(--font-size-xl);
+    }
+}
+
+@media (max-width: 768px) {
+    .lead-contacts-section {
+        padding: 60px 0;
+    }
+
+    .lead-contacts-heading h2 {
+        font-size: var(--font-size-larger);
+    }
+
+    .lead-social-links {
+        flex-wrap: wrap;
+    }
+
+    .lead-manager-photo {
+        max-width: 350px;
+    }
+
+    .lead-contacts-form .wpcf7 {
+        padding: 25px;
+    }
+
+    .lead-contacts-form .wpcf7-form {
+        gap: 15px;
+    }
+
+    .lead-contacts-form .wpcf7-tel,
+    .lead-contacts-form .wpcf7-submit {
+        height: 48px;
+    }
+
+    .lead-contacts-form .wpcf7-submit {
+        padding: 14px 24px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .lead-contacts-section {
+        padding: 50px 0;
+    }
+
+    .lead-contacts-form .wpcf7 {
+        padding: 20px;
+    }
+
+    .lead-contacts-form .wpcf7-tel,
+    .lead-contacts-form .wpcf7-submit {
+        height: 46px;
+        font-size: 14px;
+    }
+
+    .lead-contacts-form .wpcf7-form-control {
+        padding: 12px 15px;
+    }
+
+    .lead-contacts-form .wpcf7-submit {
+        padding: 13px 20px;
+    }
+
+    .lead-contact-item a,
+    .lead-contact-item span {
+        font-size: 1rem;
+    }
+
+    .lead-contact-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .lead-contact-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .lead-messenger-link {
+        width: 40px;
+        height: 40px;
+    }
+
+    .lead-messenger-link.max-link svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .lead-manager-photo {
+        max-width: 300px;
+    }
+
+    .lead-manager-photo::before,
+    .lead-manager-photo::after {
+        display: none;
+    }
+}
+
+/* Темная тема
+@media (prefers-color-scheme: dark) {
+    .lead-contacts-section {
+        background-color: var(--color-dark-bg);
+    }
+
+    .lead-contacts-section::before {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .lead-contacts-heading h2 {
+        color: var(--color-white);
+    }
+
+    .lead-contact-item a,
+    .lead-contact-item span {
+        color: var(--color-text-lighter);
+    }
+
+    .lead-contact-item a:hover {
+        color: var(--color-eco-fresh);
+    }
+
+    .lead-contacts-form .wpcf7 {
+        background: rgba(30, 30, 30, 0.8);
+        border-color: rgba(139, 197, 61, 0.2);
+    }
+
+    .lead-contacts-form .wpcf7-form-control {
+        background: rgba(139, 197, 61, 0.05);
+        border-color: rgba(139, 197, 61, 0.2);
+        color: var(--color-text-lighter);
+    }
+
+    .lead-contacts-form .wpcf7-form-control:focus {
+        background: rgba(139, 197, 61, 0.08);
+    }
+
+    .lead-contacts-form .wpcf7-form-control::placeholder {
+        color: var(--color-text-light);
+    }
+
+    .lead-manager-photo img {
+        background: linear-gradient(var(--color-dark-bg), var(--color-dark-bg)) padding-box,
+            linear-gradient(135deg,
+                var(--color-eco-vibrant) 0%,
+                var(--color-eco-fresh) 25%,
+                var(--color-eco-green) 50%,
+                var(--color-eco-forest) 100%) border-box;
+    }
+} */
+
+/* Стили для соцссылок на картинке менеджера */
+.lead-manager-photo {
+    position: relative;
+}
+
+.lead-manager-photo .lead-social-links {
+    position: absolute;
+    bottom: 20px;
+    /* Отступ снизу 20пикс */
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0;
+    display: flex;
+    gap: 12px;
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.lead-manager-photo .lead-social-links.animated {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Адаптивность для соцссылок на картинке */
+@media (max-width: 1024px) {
+    .lead-manager-photo .lead-social-links {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        margin-top: 20px;
+        justify-content: center;
+    }
+
+    .lead-manager-photo .lead-social-links.animated {
+        transform: none;
+    }
+}

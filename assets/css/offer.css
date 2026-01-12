@@ -1,0 +1,366 @@
+/* esa-offer.css - Стили для карточек услуг с префиксом esa-offer */
+
+/* Основные стили секции */
+.esa-offer-section {
+    padding: 60px 0;
+    background: linear-gradient(135deg, 
+        rgba(139, 197, 61, 0.05) 0%, 
+        rgba(201, 238, 2, 0.05) 25%,
+        rgba(44, 120, 32, 0.05) 50%,
+        rgba(255, 255, 1, 0.05) 75%);
+    position: relative;
+    overflow: hidden;
+}
+
+.esa-offer-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 90% 10%, rgba(139, 197, 61, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 10% 90%, rgba(201, 238, 2, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Заголовки */
+.esa-offer-title {
+    font-size: var(--font-size-xl);
+    color: var(--color-black);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    margin: 0 0 15px 0;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.esa-offer-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--gradient-eco-horizontal);
+    border-radius: 2px;
+}
+
+.esa-offer-subtitle {
+    text-align: center;
+    color: var(--color-text-light);
+    font-size: var(--font-size-base);
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
+
+/* Категории услуг */
+.esa-offer-category {
+    margin-bottom: 40px;
+}
+
+.esa-offer-category:last-child {
+    margin-bottom: 0;
+}
+
+.esa-offer-category-title {
+    font-size: var(--font-size-larger);
+    color: var(--color-eco-forest);
+    font-weight: var(--font-weight-bold);
+    margin: 0 0 8px 0;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.esa-offer-category-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-eco-horizontal);
+    border-radius: 2px;
+}
+
+.esa-offer-category-subtitle {
+    color: var(--color-text-light);
+    font-size: var(--font-size-base);
+    margin: 0 0 20px 0;
+    line-height: 1.5;
+    max-width: 800px;
+}
+
+/* Обертка карточек - 2 карточки в ряд */
+.esa-offer-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Карточка категории */
+.esa-offer-card {
+    background: var(--color-white);
+    border-radius: var(--radius-md);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: all var(--transition);
+    border: 1px solid rgba(139, 197, 61, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.esa-offer-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border-color: rgba(139, 197, 61, 0.3);
+}
+
+.esa-offer-card-wide {
+    grid-column: 1 / -1;
+}
+
+/* Шапка карточки */
+.esa-offer-card-header {
+    background: linear-gradient(90deg, 
+        var(--color-eco-forest) 0%, 
+        var(--color-eco-green) 100%);
+    color: var(--color-white);
+    padding: 16px 18px;
+    position: relative;
+    overflow: hidden;
+}
+
+.esa-offer-card-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+    );
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.esa-offer-card:hover .esa-offer-card-header::before {
+    opacity: 1;
+    animation: esa-offer-shine 1.5s ease-in-out;
+}
+
+@keyframes esa-offer-shine {
+    0% { transform: rotate(45deg) translateX(-100%); }
+    100% { transform: rotate(45deg) translateX(100%); }
+}
+
+.esa-offer-card-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    margin: 0;
+    color: var(--color-white);
+    position: relative;
+    z-index: 2;
+    line-height: 1.3;
+}
+
+/* Тело карточки */
+.esa-offer-card-body {
+    padding: 18px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Список услуг - МЕНЬШИЕ ОТСТУПЫ */
+.esa-offer-prices-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.esa-offer-price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed rgba(139, 197, 61, 0.08);
+    transition: all 0.2s ease;
+    min-height: 32px;
+}
+
+.esa-offer-price-item:hover {
+    border-bottom-color: rgba(139, 197, 61, 0.2);
+    padding-left: 2px;
+}
+
+.esa-offer-price-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.esa-offer-service-name {
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+    line-height: 1.3;
+    flex: 1;
+    padding-right: 10px;
+    font-weight: var(--font-weight-medium);
+}
+
+/* Контейнер с ценами */
+.esa-offer-price-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-width: 100px;
+}
+
+.esa-offer-our-price {
+    font-size: var(--font-size-sm);
+    color: var(--color-eco-forest);
+    font-weight: var(--font-weight-semibold);
+    padding: 3px 6px;
+    background: rgba(139, 197, 61, 0.05);
+    border-radius: 3px;
+    border: 1px solid rgba(139, 197, 61, 0.15);
+    white-space: nowrap;
+}
+
+/* Блок с примечанием */
+.esa-offer-notice {
+    margin-top: 35px;
+    padding: 18px;
+    background: linear-gradient(90deg, 
+        rgba(139, 197, 61, 0.08) 0%, 
+        rgba(201, 238, 2, 0.08) 100%);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--color-eco-vibrant);
+    text-align: center;
+}
+
+.esa-offer-notice p {
+    margin: 0;
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+}
+
+.esa-offer-notice strong {
+    color: var(--color-eco-forest);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .esa-offer-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .esa-offer-section {
+        padding: 40px 0;
+    }
+    
+    .esa-offer-wrapper {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .esa-offer-category {
+        margin-bottom: 30px;
+    }
+    
+    .esa-offer-category-title {
+        font-size: var(--font-size-large);
+    }
+    
+    .esa-offer-card-header {
+        padding: 14px;
+    }
+    
+    .esa-offer-card-body {
+        padding: 14px;
+    }
+    
+    .esa-offer-price-item {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 6px;
+        padding-bottom: 6px;
+        min-height: 28px;
+    }
+    
+    .esa-offer-price-wrapper {
+        width: 100%;
+        margin-top: 4px;
+        align-items: flex-start;
+        border-top: 1px dashed rgba(139, 197, 61, 0.08);
+        padding-top: 4px;
+    }
+    
+    .esa-offer-service-name,
+    .esa-offer-our-price {
+        font-size: var(--font-size-xs);
+    }
+}
+
+@media (max-width: 480px) {
+    .esa-offer-section {
+        padding: 30px 0;
+    }
+    
+    .esa-offer-title {
+        font-size: var(--font-size-larger);
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .esa-offer-title::after {
+        width: 50px;
+        height: 2px;
+    }
+    
+    .esa-offer-subtitle {
+        font-size: var(--font-size-sm);
+        margin-bottom: 25px;
+    }
+    
+    .esa-offer-category-title {
+        font-size: var(--font-size-base);
+        margin-bottom: 6px;
+        padding-bottom: 6px;
+    }
+    
+    .esa-offer-category-title::after {
+        width: 40px;
+        height: 2px;
+    }
+    
+    .esa-offer-category-subtitle {
+        font-size: var(--font-size-sm);
+        margin-bottom: 15px;
+    }
+    
+    .esa-offer-notice {
+        margin-top: 25px;
+        padding: 14px;
+    }
+}

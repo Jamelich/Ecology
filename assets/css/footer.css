@@ -1,10 +1,11 @@
-/* footer.css - Стили для футера сайта */
+/* footer.css - Стили для футера сайта в эко-стиле */
 
 /* Общие стили футера */
 .site-footer {
-    background-color: var(--color-black);
+    background-color: var(--color-dark-bg);
     color: var(--color-white);
     font-family: var(--font-family-base);
+    border-top: 3px solid var(--color-eco-forest);
 }
 
 .footer-logo img {
@@ -14,7 +15,12 @@
 /* Верхняя часть футера */
 .footer-top {
     padding: 50px 0;
-    border-bottom: 1px solid var(--color-border-dark);
+    border-bottom: 1px solid rgba(139, 197, 61, 0.2);
+    background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.2) 0%, 
+                rgba(0, 0, 0, 0.15) 25%,
+                rgba(0, 0, 0, 0.1) 50%,
+                transparent 100%);
 }
 
 .footer-top__grid {
@@ -45,7 +51,8 @@
     left: 0;
     width: 40px;
     height: 2px;
-    background-color: var(--color-accent);
+    background: var(--gradient-eco-horizontal);
+    border-radius: 1px;
 }
 
 /* Колонка с логотипом */
@@ -60,7 +67,6 @@
 
 .footer-logo__img {
     max-height: 40px;
-    /* Уменьшена высота логотипа */
     width: auto;
     display: block;
 }
@@ -76,8 +82,9 @@
 .footer-description {
     margin-bottom: 25px;
     line-height: 1.6;
-    color: var(--color-text-lighter);
+    color: var(--color-white);
     font-size: var(--font-size-small);
+    opacity: 0.9;
 }
 
 .footer-description p {
@@ -100,40 +107,41 @@
     border-radius: var(--radius-lg);
     text-decoration: none;
     color: var(--color-white);
-    transition: all var(--transition-fast);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-social__link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(44, 120, 32, 0.3);
 }
 
 /* Telegram */
 .footer-social__link.tg-link {
-    background: var(--color-telegram);
+    background: linear-gradient(135deg, var(--color-telegram), #0066cc);
 }
 
 .footer-social__link.tg-link:hover {
-    background: #0077b3;
+    background: linear-gradient(135deg, #0066cc, var(--color-telegram));
 }
 
 /* ВКонтакте */
 .footer-social__link.vk-link {
-    background: var(--color-vk);
+    background: linear-gradient(135deg, var(--color-vk), #0055aa);
 }
 
 .footer-social__link.vk-link:hover {
-    background: #0066cc;
+    background: linear-gradient(135deg, #0055aa, var(--color-vk));
 }
 
 /* Max */
 .footer-social__link.max-link {
-    background: var(--color-max);
+    background: linear-gradient(135deg, var(--color-max), #5a2fd4);
 }
 
 .footer-social__link.max-link:hover {
-    background: #5a2fd4;
+    background: linear-gradient(135deg, #5a2fd4, var(--color-max));
 }
 
 .footer-social__link svg {
@@ -156,36 +164,45 @@
 
 .footer-contact-item {
     display: flex;
-    align-items: flex-start;
+    align-items: center; /* Центрирование по вертикали */
     gap: 12px;
 }
 
 .footer-contact-icon {
     flex-shrink: 0;
-    margin-top: 2px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-eco-fresh), var(--color-eco-green));
+    border-radius: 50%;
+    padding: 4px;
 }
 
 .footer-contact-icon svg {
     display: block;
-    width: 20px;
-    height: 20px;
-    color: var(--color-accent);
-}
-
-.footer-contact-text {
-    color: var(--color-text-lighter);
-    font-size: var(--font-size-small);
-    line-height: 1.4;
-    text-decoration: none;
-    transition: color var(--transition-fast);
-}
-
-.footer-contact-text:hover {
+    width: 14px;
+    height: 14px;
     color: var(--color-white);
 }
 
+.footer-contact-text {
+    color: var(--color-white);
+    font-size: var(--font-size-small);
+    line-height: 1.4;
+    text-decoration: none;
+    transition: color var(--transition);
+    opacity: 0.9;
+}
+
+.footer-contact-text:hover {
+    color: var(--color-eco-fresh);
+    opacity: 1;
+}
+
 .footer-contact-item a.footer-contact-text:hover {
-    color: var(--color-accent);
+    color: var(--color-eco-vibrant);
 }
 
 /* Кнопка заказать звонок в футере */
@@ -194,22 +211,39 @@
     align-items: center;
     gap: 10px;
     padding: 12px 24px;
-    background-color: var(--color-accent);
-    color: var(--color-white);
+    background: var(--gradient-eco-horizontal);
+    color: var(--color-black);
     border: none;
     border-radius: var(--radius-lg);
     font-size: 15px;
     font-weight: var(--font-weight-semibold);
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: all var(--transition);
     margin-top: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(44, 120, 32, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-callback-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.footer-callback-btn:hover::before {
+    left: 100%;
 }
 
 .footer-callback-btn:hover {
-    background-color: var(--color-primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(44, 120, 32, 0.4);
+    color: var(--color-eco-forest);
 }
 
 .footer-callback-btn .callback-icon svg {
@@ -237,23 +271,28 @@
 }
 
 .footer-menu a {
-    color: var(--color-text-lighter);
+    color: var(--color-white);
     text-decoration: none;
     font-size: var(--font-size-small);
-    transition: color var(--transition-fast);
+    transition: all var(--transition);
     display: inline-block;
-    padding: 2px 0;
+    padding: 6px 0;
+    border-bottom: 1px solid transparent;
+    opacity: 0.9;
 }
 
 .footer-menu a:hover {
-    color: var(--color-accent);
-    transform: translateX(3px);
+    color: var(--color-eco-fresh);
+    border-bottom-color: var(--color-eco-fresh);
+    transform: translateX(5px);
+    opacity: 1;
 }
 
 /* Нижняя часть футера */
 .footer-bottom {
     padding: 30px 0;
-    background-color: var(--color-dark-bg);
+    background-color: rgba(0, 0, 0, 0.6);
+    border-top: 1px solid rgba(139, 197, 61, 0.1);
 }
 
 .footer-bottom__content {
@@ -274,13 +313,15 @@
     margin-bottom: 10px;
     color: var(--color-white);
     font-size: var(--font-size-small);
+    font-weight: var(--font-weight-medium);
 }
 
 .footer-disclaimer {
-    color: #888;
+    color: var(--color-white);
     font-size: var(--font-size-smaller);
     line-height: 1.4;
     margin: 10px 0;
+    opacity: 0.8;
 }
 
 .footer-links {
@@ -291,15 +332,18 @@
 }
 
 .footer-link {
-    color: #888;
+    color: var(--color-white);
     text-decoration: none;
     font-size: var(--font-size-smaller);
-    transition: color var(--transition-fast);
+    transition: all var(--transition);
+    padding: 2px 0;
+    opacity: 0.8;
 }
 
 .footer-link:hover {
-    color: var(--color-accent);
+    color: var(--color-eco-fresh);
     text-decoration: underline;
+    opacity: 1;
 }
 
 /* Разработчик */
@@ -309,6 +353,11 @@
 
 .footer-developer {
     flex-shrink: 0;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(139, 197, 61, 0.2);
+    margin-top: 20px;
 }
 
 .footer-developer a {
@@ -316,8 +365,14 @@
     text-decoration: none;
     align-items: center;
     color: var(--color-white);
-    margin-top: 30px;
     gap: 15px;
+    transition: color var(--transition);
+    opacity: 0.9;
+}
+
+.footer-developer a:hover {
+    color: var(--color-eco-fresh);
+    opacity: 1;
 }
 
 /* Колонка с менеджером */
@@ -328,9 +383,22 @@
 .footer-manager {
     margin-bottom: 25px;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: var(--radius-lg);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(139, 197, 61, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-manager::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, transparent 40%, rgba(255, 255, 1, 0.05) 100%);
+    border-radius: 0 0 0 100%;
 }
 
 .footer-manager-photo {
@@ -342,6 +410,7 @@
     height: auto;
     display: block;
     border-radius: var(--radius-lg);
+    border: 2px solid var(--color-eco-fresh);
 }
 
 .footer-manager-info {
@@ -357,8 +426,9 @@
 
 .footer-manager-position {
     font-size: var(--font-size-small);
-    color: var(--color-text-lighter);
+    color: var(--color-white);
     margin-bottom: 10px;
+    opacity: 0.9;
 }
 
 .footer-manager-phone {
@@ -367,13 +437,14 @@
 }
 
 .footer-manager-phone a {
-    color: var(--color-accent);
+    color: var(--color-eco-vibrant);
     text-decoration: none;
-    transition: color var(--transition-fast);
+    transition: color var(--transition);
+    font-weight: var(--font-weight-semibold);
 }
 
 .footer-manager-phone a:hover {
-    color: var(--color-primary-hover);
+    color: var(--color-eco-fresh);
 }
 
 /* Кнопка заказать звонок в колонке менеджера */
@@ -403,11 +474,12 @@
     max-width: 500px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--color-eco-green);
 }
 
 .popup-header {
-    background: var(--color-accent);
-    color: var(--color-white);
+    background: var(--gradient-eco-horizontal);
+    color: var(--color-black);
     padding: 20px;
     display: flex;
     justify-content: space-between;
@@ -417,13 +489,15 @@
 .popup-header h3 {
     margin: 0;
     font-size: var(--font-size-larger);
+    font-weight: var(--font-weight-bold);
 }
 
 .popup-close {
     font-size: 28px;
     cursor: pointer;
     line-height: 1;
-    transition: opacity var(--transition-fast);
+    transition: opacity var(--transition);
+    color: var(--color-black);
 }
 
 .popup-close:hover {
@@ -504,6 +578,7 @@
     .footer-contact-item {
         flex-direction: column;
         gap: 5px;
+        align-items: flex-start; /* На мобильных выравнивание по левому краю */
     }
 
     .footer-contact-icon {

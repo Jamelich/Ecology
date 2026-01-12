@@ -1,0 +1,186 @@
+/* vk-comments.css - стили для блока с отзывами ВК */
+
+/* Основная секция */
+.vk-comments-section {
+    background: var(--color-white);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.vk-comments-container {
+    position: relative;
+}
+
+/* Заголовок */
+.vk-comments-heading {
+    text-align: center;
+    margin-bottom: 50px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.vk-comments-heading.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.vk-comments-heading h2 {
+    font-size: var(--font-size-xxl);
+    color: var(--color-black);
+    margin-bottom: 20px;
+    font-weight: var(--font-weight-bold);
+    text-transform: none;
+}
+
+.vk-comments-line {
+    width: 120px;
+    height: 4px;
+    background: var(--gradient-eco-horizontal);
+    margin: 0 auto 20px auto;
+    border-radius: 2px;
+}
+
+.vk-comments-subtitle {
+    color: var(--color-text-light);
+    font-size: var(--font-size-large);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Обертка для виджета ВК */
+.vk-widget-wrapper {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(139, 197, 61, 0.2);
+    background: var(--color-white);
+    /* min-height: 400px; */
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease, all var(--transition);
+}
+
+.vk-widget-wrapper.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Если виджет не загрузился, показываем заглушку */
+.vk-widget-wrapper:empty::before {
+    content: 'Виджет отзывов ВКонтакте будет загружен здесь';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    background: linear-gradient(45deg, 
+        rgba(139, 197, 61, 0.1) 0%, 
+        rgba(201, 238, 2, 0.07) 100%);
+    color: var(--color-text-light);
+    font-size: var(--font-size-large);
+    border-radius: var(--radius-lg);
+    border: 2px dashed rgba(139, 197, 61, 0.3);
+    text-align: center;
+    padding: 20px;
+}
+
+/* Контейнер комментариев ВК */
+#vk_comments {
+    width: 100%;
+}
+
+/* Стили для самого виджета ВК (если нужно переопределить) */
+#vk_comments iframe {
+    width: 100% !important;
+    border: none !important;
+}
+
+/* Эффект при наведении на обертку */
+.vk-widget-wrapper:hover {
+    box-shadow: 0 15px 50px rgba(44, 120, 32, 0.15);
+    border-color: rgba(139, 197, 61, 0.4);
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+    .vk-comments-section {
+        padding: 70px 0;
+    }
+    
+    .vk-comments-heading h2 {
+        font-size: var(--font-size-xl);
+    }
+    
+    .vk-comments-subtitle {
+        font-size: var(--font-size-base);
+        padding: 0 20px;
+    }
+    
+    .vk-widget-wrapper {
+        padding: 15px;
+        min-height: 350px;
+    }
+    
+    .vk-widget-wrapper:empty::before {
+        min-height: 350px;
+        font-size: var(--font-size-base);
+    }
+}
+
+@media (max-width: 768px) {
+    .vk-comments-section {
+        padding: 60px 0;
+    }
+    
+    .vk-comments-heading {
+        margin-bottom: 40px;
+    }
+    
+    .vk-comments-heading h2 {
+        font-size: var(--font-size-larger);
+    }
+    
+    .vk-widget-wrapper {
+        padding: 10px;
+        min-height: 300px;
+    }
+    
+    .vk-widget-wrapper:empty::before {
+        min-height: 300px;
+        font-size: var(--font-size-base);
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .vk-comments-section {
+        padding: 50px 0;
+    }
+    
+    .vk-comments-heading h2 {
+        font-size: var(--font-size-large);
+    }
+    
+    .vk-comments-subtitle {
+        font-size: var(--font-size-smaller);
+        padding: 0 10px;
+    }
+    
+    .vk-widget-wrapper {
+        padding: 5px;
+        min-height: 250px;
+        border-width: 1px;
+    }
+    
+    .vk-widget-wrapper:empty::before {
+        min-height: 250px;
+        font-size: var(--font-size-small);
+        padding: 10px;
+    }
+}

@@ -9,32 +9,72 @@ function wpprog_theme_options()
     // страница опций
     Container::make('theme_options', __('Опции темы'))
         ->set_icon('dashicons-admin-generic')
-    
-        ->add_tab(__('Уникальное торговое предложение (баннер)'), array(
-            Field::make('image', 'utp_banner_slide_pc', 'Баннер для ПК версии')->set_value_type('url')->set_width(50),
-            Field::make('image', 'utp_banner_slide_mob', 'Баннер для моб версии')->set_value_type('url')->set_width(50),
+
+        ->add_tab(__('Уникальное торговое предложение'), array(
+            Field::make('media_gallery', 'utp_slider_pc', 'Галерея ПК')
+                ->set_type(['image'])
+                ->set_help_text('Если картинка только одна, будет просто баннер, если больше - слайдер'),
+            Field::make('media_gallery', 'utp_slider_mob', 'Галерея Моб')
+                ->set_type(['image'])
+                ->set_help_text('Если картинка только одна, будет просто баннер, если больше - слайдер')
         ))
 
         ->add_tab(__('Блок раскрытия информации (о компании)'), array(
             Field::make('rich_text', 'reneval_text', 'Текст блока')->set_width(80),
             Field::make('media_gallery', 'reneval_gallery', 'Фото блока для слайдера')->set_type(['image'])
         ))
-        
+
         ->add_tab(__('Блок суперпредложения'), array(
             Field::make('image', 'super_offer_photo', __('Фото'))->set_value_type('url')->set_width(25),
             Field::make('text', 'super_offer_name', __('Название'))->set_width(25),
             Field::make('text', 'super_offer_subheader', __('Подзаголовок'))->set_width(45),
             Field::make('rich_text', 'super_offer_desc', __('Описание')),
         ))
-        ->add_tab(__('Галерея автопарка'), array(
-            Field::make('media_gallery', 'gallery_autopark', 'Галерея автопарка')
-                ->set_type(['image']),
+
+        ->add_tab(__('Лид-блок'), array(
+            Field::make('image', 'photo_man', __('Фото менеджера'))->set_value_type('url')->set_width(50),
+            Field::make('image', 'bg_manager_photo', 'Фоновое фото')->set_value_type('url')->set_width(50)
         ))
+
+        ->add_tab(__('Видеоотзывы'), array(
+            Field::make('complex', 'video_reviews', __('Видеоотзывы'))
+                ->set_layout('tabbed-horizontal')
+                ->add_fields(array(
+                    Field::make('text', 'link_rutube', __('Ссылка на видеоотзыв Rutube'))
+                        ->set_help_text('Ссылка на видео Rutube в таком виде: https://rutube.ru/video/2da5d9e385fb9491382d847330c04265/?r=wd')
+                        ->set_width(50),
+                    Field::make('image', 'preview_rutube', 'Фото заглушка')->set_value_type('url')
+                        ->set_width(50)
+                ))
+        ))
+
+        ->add_tab(__('Слайдер с документами (рекомендательные письма/отзывы)'), array(
+            Field::make('media_gallery', 'image_review', 'Галерея с отзывами')
+                ->set_type(['image'])
+        ))
+
+        ->add_tab(__('Слайдер с логотипами клиентов'), array(
+            Field::make('media_gallery', 'image_logo', 'Логотипы')
+                ->set_type(['image'])
+        ))
+
+        ->add_tab(__('Блок FAQ'), array(
+            Field::make('complex', 'faq_items', __('Вопросы и ответы'))
+                ->add_fields(array(
+                    Field::make('text', 'question', __('Вопрос'))
+                        ->set_required(true),
+                    Field::make('rich_text', 'answer', __('Ответ'))
+                        ->set_required(true),
+                ))
+                ->set_layout('tabbed-horizontal')
+        ))
+
         ->add_tab(__('Дополнительные услуги'), array(
             Field::make('image', 'adv_service_photo', __('Фото'))->set_value_type('url')->set_width(25),
             Field::make('text', 'adv_service_name', __('Название'))->set_width(25),
             Field::make('rich_text', 'adv_service_desc', __('Описание')),
         ))
+
         ->add_tab(__('Довольные клиенты'), array(
             Field::make('complex', 'clients', __('Довольные клиенты'))
                 ->set_layout('tabbed-horizontal')
@@ -45,14 +85,7 @@ function wpprog_theme_options()
                 ))
         ))
 
-        ->add_tab(__('Видеоотзывы'), array(
-            Field::make('complex', 'video_reviews', __('Видеоотзывы'))
-                ->set_layout('tabbed-horizontal')
-                ->add_fields(array(
-                    Field::make('file', 'video_reviews_file', 'Видео файл')->set_type(array('video'))->set_value_type('url'),
-                    Field::make('image', 'video_reviews_poster', 'Фото-заглушка')->set_value_type('url')
-                ))
-        ))
+
 
         ->add_tab(__('Блок акции'), array(
             Field::make('complex', 'company_promo', __('Акции'))
@@ -68,16 +101,7 @@ function wpprog_theme_options()
         //     Field::make('media_gallery', 'soc_gallery', 'Фото блока для слайдера')->set_type(['image'])
         // ))
 
-        ->add_tab(__('Блок FAQ'), array(
-            Field::make('complex', 'faq_items', __('Вопросы и ответы'))
-                ->add_fields(array(
-                    Field::make('text', 'question', __('Вопрос'))
-                        ->set_required(true),
-                    Field::make('rich_text', 'answer', __('Ответ'))
-                        ->set_required(true),
-                ))
-                ->set_layout('tabbed-horizontal')
-        ))
+
 
         ->add_tab(__('Контакты'), array(
             Field::make('text', 'phone1', __('Номер телефона 1'))->set_width(50),
@@ -91,234 +115,239 @@ function wpprog_theme_options()
             Field::make('rich_text', 'rekv', __('Реквизиты'))->set_width(50),
             Field::make('rich_text', 'code_map', __('Код карты'))->set_width(50),
             Field::make('image', 'manager_photo', 'Фото менеджера')->set_value_type('url')->set_width(10),
-            Field::make('image', 'bg_manager_photo', 'Фоновое фото')->set_value_type('url')->set_width(10),
             Field::make('rich_text', 'slogan', __('Девиз компании (слоган)'))->set_width(50),
             Field::make('text', 'manager_phone', 'Телефон менеджера')->set_width(33),
             Field::make('text', 'manager_name', 'Имя менеджера')->set_width(33),
             Field::make('text', 'manager_job_title', 'Должность')->set_width(33),
             Field::make('text', 'yandex_maps_api_key', __('API ключ Яндекс Карт'))->set_help_text('Получите ключ на https://developer.tech.yandex.ru/'),
-        ))
+        ));
 
-    ;
-
-
-    // Container::make('post_meta', 'Настройки главной страницы')
-    //     ->where('post_id', '=', get_option('page_on_front'))
-    //     ->or_where('post_type', '=', 'home_page')
-    //     ->add_tab('Основные настройки', [
-    //         Field::make('rich_text', 'service_text', 'Текст перед услугами'),
-    //     ])
-    //     ->add_tab('Настройки оффера', [
-    //         Field::make('image', 'offer_right_image', 'Картинка оффера')->set_value_type('url'),
-    //         Field::make('rich_text', 'offer_left_text', 'Текст оффера'),
-    //     ])
-    //     ->add_tab('Карта', [
-    //         Field::make('rich_text', 'code_map', 'Код карты'),
-    //     ])
-    //     ->add_tab(__('Партнеры'), array(
-    //         Field::make('complex', 'partners_logo', __('Логотипы партнеров'))
-    //             ->add_fields(array(
-    //                 Field::make('image', 'partners_logo_image', __('Логотип'))->set_value_type('url'),
-    //             ))
-    //     ))
-    //     // ->add_tab(__('Фотогалерея'), array(
-    //     //     Field::make('media_gallery', 'crb_gallery', 'Фотогалерея')
-    //     //         ->set_type(['image']),
-    //     // ))
-
-    // ;
-
-    /*
-    Container::make('post_meta', 'Общие работы')
-        ->where('post_type', '=', 'page')
-        ->where('post_id', 'IN', [53, 186])  // Аналог SQL WHERE post_id IN (55, 188)
+    Container::make('post_meta', 'Данные проекта')
+        ->where('post_type', '=', 'post') // Только для стандартных записей
         ->add_fields([
-            Field::make('text', 'header_job1', 'Заголовок'),
-            Field::make('complex', 'work1', __('Общие работы'))
-                ->set_layout('tabbed-horizontal') // или 'tabbed-vertical'
-                ->add_fields(array(
-                    Field::make('text', 'title_work1', 'Название работы')
-                        ->set_width(50),
-                    Field::make('text', 'desc_work1', 'Описание работы')
-                        ->set_width(50),
-                    Field::make('text', 'price_work1', 'Цена работы')
-                        ->set_width(50),
-                    Field::make('text', 'time_work1', 'Время работы')
-                        ->set_width(50),
-                ))
+            Field::make('text', 'project_number', 'Номер из ПДФ')
+                ->set_help_text('Номер строки из таблицы ПДФ')
+                ->set_width(33),
+            Field::make('text', 'project_start_date', 'Дата начала работ')
+                ->set_help_text('Вводите в любом формате: 04.2025, апрель 2025, 2025-04-01 и т.д.')
+                ->set_width(33),
+            Field::make('text', 'project_end_date', 'Дата окончания работ')
+                ->set_help_text('Вводите в любом формате: 06.2025, июнь 2025, 2025-06-01 и т.д.')
+                ->set_width(33),
         ]);
-
-    Container::make('post_meta', 'Детейлинг')
-        ->where('post_type', '=', 'page')
-        ->where('post_id', 'IN', [53, 186])  // Аналог SQL WHERE post_id IN (55, 188)
-        ->add_fields([
-            Field::make('text', 'header_job2', 'Заголовок'),
-            Field::make('complex', 'work2', __('Детейлинг (пакеты услуг)'))
-                ->set_layout('tabbed-horizontal') // или 'tabbed-vertical'
-                ->add_fields(array(
-                    Field::make('text', 'title_work2', 'Название работы')
-                        ->set_width(50),
-                    Field::make('text', 'desc_work2', 'Описание работы')
-                        ->set_width(50),
-                    Field::make('text', 'price_work2', 'Цена работы')
-                        ->set_width(50),
-                    Field::make('text', 'time_work2', 'Время работы')
-                        ->set_width(50),
-                ))
-        ]);
-
-    Container::make('post_meta', 'Ручная мойка')
-        ->where('post_type', '=', 'page')
-        ->where('post_id', 'IN', [53, 186])  // Аналог SQL WHERE post_id IN (55, 188)
-        ->add_fields([
-            Field::make('text', 'header_job3', 'Заголовок'),
-            Field::make('complex', 'work3', __('Ручная мойка'))
-                ->set_layout('tabbed-horizontal') // или 'tabbed-vertical'
-                ->add_fields(array(
-                    Field::make('text', 'title_work3', 'Название работы')
-                        ->set_width(50),
-                    Field::make('text', 'desc_work3', 'Описание работы')
-                        ->set_width(50),
-                    Field::make('text', 'price_work3', 'Цена работы')
-                        ->set_width(50),
-                    Field::make('text', 'time_work3', 'Время работы')
-                        ->set_width(50),
-                ))
-        ]);
-
-    Container::make('post_meta', 'Чистка салона')
-        ->where('post_type', '=', 'page')
-        ->where('post_id', 'IN', [53, 186])  // Аналог SQL WHERE post_id IN (55, 188)
-        ->add_fields([
-            Field::make('text', 'header_job4', 'Заголовок'),
-            Field::make('complex', 'work4', __('Чистка салона'))
-                ->set_layout('tabbed-horizontal') // или 'tabbed-vertical'
-                ->add_fields(array(
-                    Field::make('text', 'title_work4', 'Название работы')
-                        ->set_width(50),
-                    Field::make('text', 'desc_work4', 'Описание работы')
-                        ->set_width(50),
-                    Field::make('text', 'price_work4', 'Цена работы')
-                        ->set_width(50),
-                    Field::make('text', 'time_work4', 'Время работы')
-                        ->set_width(50),
-                ))
-        ]);
-
-    Container::make('post_meta', 'Полировка автомобиля')
-        ->where('post_type', '=', 'page')
-        ->where('post_id', 'IN', [53, 186])  // Аналог SQL WHERE post_id IN (55, 188)
-        ->add_fields([
-            Field::make('text', 'header_job5', 'Заголовок'),
-            Field::make('complex', 'work5', __('Полировка автомобиля'))
-                ->set_layout('tabbed-horizontal') // или 'tabbed-vertical'
-                ->add_fields(array(
-                    Field::make('text', 'title_work5', 'Название работы')
-                        ->set_width(50),
-                    Field::make('text', 'desc_work5', 'Описание работы')
-                        ->set_width(50),
-                    Field::make('text', 'price_work5', 'Цена работы')
-                        ->set_width(50),
-                    Field::make('text', 'time_work5', 'Время работы')
-                        ->set_width(50),
-                ))
-        ]);
-
-    Container::make('post_meta', 'Защита кузова')
-        ->where('post_type', '=', 'page')
-        ->where('post_id', 'IN', [53, 186])  // Аналог SQL WHERE post_id IN (55, 188)
-        ->add_fields([
-            Field::make('text', 'header_job6', 'Заголовок'),
-            Field::make('complex', 'work6', __('Защита кузова'))
-                ->set_layout('tabbed-horizontal') // или 'tabbed-vertical'
-                ->add_fields(array(
-                    Field::make('text', 'title_work6', 'Название работы')
-                        ->set_width(50),
-                    Field::make('text', 'desc_work6', 'Описание работы')
-                        ->set_width(50),
-                    Field::make('text', 'price_work6', 'Цена работы')
-                        ->set_width(50),
-                    Field::make('text', 'time_work6', 'Время работы')
-                        ->set_width(50),
-                ))
-        ]);
-
-    Container::make('post_meta', 'Реставрационные работы')
-        ->where('post_type', '=', 'page')
-        ->where('post_id', 'IN', [53, 186])  // Аналог SQL WHERE post_id IN (55, 188)
-        ->add_fields([
-            Field::make('text', 'header_job7', 'Заголовок'),
-            Field::make('complex', 'work7', __('Реставрационные работы'))
-                ->set_layout('tabbed-horizontal') // или 'tabbed-vertical'
-                ->add_fields(array(
-                    Field::make('text', 'title_work7', 'Название работы')
-                        ->set_width(50),
-                    Field::make('text', 'desc_work7', 'Описание работы')
-                        ->set_width(50),
-                    Field::make('text', 'price_work7', 'Цена работы')
-                        ->set_width(50),
-                    Field::make('text', 'time_work7', 'Время работы')
-                        ->set_width(50),
-                ))
-        ]);
-
-    Container::make('post_meta', 'Другие работы')
-        ->where('post_type', '=', 'page')
-        ->where('post_id', 'IN', [53, 186])  // Аналог SQL WHERE post_id IN (55, 188)
-        ->add_fields([
-            Field::make('text', 'header_job8', 'Заголовок'),
-            Field::make('complex', 'work8', __('Другие работы'))
-                ->set_layout('tabbed-horizontal') // или 'tabbed-vertical'
-                ->add_fields(array(
-                    Field::make('text', 'title_work8', 'Название работы')
-                        ->set_width(50),
-                    Field::make('text', 'desc_work8', 'Описание работы')
-                        ->set_width(50),
-                    Field::make('text', 'price_work8', 'Цена работы')
-                        ->set_width(50),
-                    Field::make('text', 'time_work8', 'Время работы')
-                        ->set_width(50),
-                ))
-        ]);
-*/
-
-    // Container::make('post_meta', 'FAQ')
-    //     ->where('post_type', '=', 'page')
-    //     ->where('post_id', 'IN', [55, 188])  // Аналог SQL WHERE post_id IN (55, 188)
-    //     ->add_fields([
-    //         Field::make('complex', 'faq_accordion', __('Вопрос-ответ (FAQ)'))
-    //             ->set_layout('tabbed-horizontal') // или 'tabbed-vertical'
-    //             ->add_fields(array(
-    //                 Field::make('text', 'question', __('Вопрос'))
-    //                     ->set_width(50)
-    //                     ->set_required(true),
-    //                 Field::make('rich_text', 'answer', __('Ответ'))
-    //                     ->set_width(50)
-    //                     ->set_required(true),
-    //             ))
-    //     ]);
-
-    // Container::make('post_meta', 'Фотогалерея')
-    //     ->where('post_type', '=', 'page')
-    //     ->where('post_id', 'IN', [68, 213])  // Аналог SQL WHERE post_id IN (55, 188)
-    //     ->add_fields([
-    //         Field::make('media_gallery', 'crb_gallery', 'Фотогалерея')
-    //             ->set_type(['image']),
-    //         // Field::make('html', 'crb_clear_gallery_btn')
-    //         //     ->set_html('<button type="button" class="button js-clear-carbon-gallery" style="margin-top:10px;background:#dc3232;color:white;border-color:#a00;">Очистить галерею</button>')
-    //     ]);
-
-    // Container::make('post_meta', 'Настройки услуги')
-    //     ->where('post_type', '=', 'post') // Стандартный тип записи
-    //     ->where('post_term', '=', [
-    //         'field' => 'slug',
-    //         'value' => 'uslugi', // Slug категории
-    //         'taxonomy' => 'category',
-    //     ])
-    //     ->add_fields([
-    //         Field::make('text', 'service_price', 'Цена'),
-    //     ]);
 }
 
 // Удаление автоматических <br> и <p> в Contact Form 7
 add_filter('wpcf7_autop_or_not', '__return_false');
+
+
+
+// Одноразовый скрипт для заполнения FAQ с очисткой только FAQ опций
+// Добавить в functions.php, обновить страницу админки, удалить скрипт
+
+/*
+add_action('admin_init', function() {
+    // Проверяем метку, что скрипт уже выполнялся
+    if (get_option('_faq_script_executed')) {
+        return;
+    }
+    
+    // 1. Сначала очищаем только FAQ данные
+    carbon_set_theme_option('faq_items', array());
+    
+    // 2. Заполняем новыми данными
+    $faq_data = array(
+        array(
+            'question' => 'Какие услуги предоставляет ваша компания?',
+            'answer' => '<p>Мы оказываем полный спектр услуг в сфере экологии: разработка проектной документации, экологический аудит, расчет платы за негативное воздействие, инвентаризация выбросов, разработка ПНООЛР, СЗЗ, ПДВ, ПЭК и другие.</p>'
+        ),
+        array(
+            'question' => 'Нужно ли оформлять экологическую документацию малому бизнесу?',
+            'answer' => '<p>Да, экологическая отчетность обязательна для всех предприятий, осуществляющих воздействие на окружающую среду, независимо от масштаба деятельности.</p>'
+        ),
+        array(
+            'question' => 'Как быстро можно получить готовую документацию?',
+            'answer' => '<p>Сроки зависят от типа документации и объема работ. Простая отчетность — 1-3 дня, комплексные проекты — от 10 до 30 рабочих дней.</p>'
+        ),
+        array(
+            'question' => 'Как формируется стоимость услуг?',
+            'answer' => '<p>Цена зависит от типа документации, сложности проекта, количества источников воздействия и срочности. Мы предоставляем точный расчет после анализа предоставленных данных.</p>'
+        ),
+        array(
+            'question' => 'Есть ли возможность оплаты в рассрочку?',
+            'answer' => '<p>Да, для крупных проектов возможна поэтапная оплата по факту выполнения работ.</p>'
+        ),
+        array(
+            'question' => 'Предоставляете ли вы скидки постоянным клиентам?',
+            'answer' => '<p>Да, для наших постоянных клиентов действует система лояльности со скидками до 15%.</p>'
+        ),
+        array(
+            'question' => 'Какие документы нужны для начала работы?',
+            'answer' => '<p>Для оценки потребуются: учредительные документы, сведения о деятельности, данные об источниках выбросов/сбросов, отходах, ранее разработанная экологическая документация.</p>'
+        ),
+        array(
+            'question' => 'Кто несет ответственность за достоверность предоставленных данных?',
+            'answer' => '<p>Заказчик несет ответственность за достоверность исходных данных, мы отвечаем за правильность их обработки и соответствие документации требованиям законодательства.</p>'
+        ),
+        array(
+            'question' => 'Что делать, если у предприятия уже есть нарушения?',
+            'answer' => '<p>Мы поможем выявить нарушения, разработаем план по их устранению и минимизируем риски при проверках контролирующих органов.</p>'
+        ),
+        array(
+            'question' => 'Нужен ли проект СЗЗ для действующего предприятия?',
+            'answer' => '<p>Да, санитарно-защитная зона обязательна для всех объектов, оказывающих воздействие на среду и здоровье человека. Её отсутствие — прямое нарушение.</p>'
+        ),
+        array(
+            'question' => 'Как часто нужно обновлять проект ПДВ?',
+            'answer' => '<p>Проект ПДВ разрабатывается на 7 лет, но требует корректировки при изменении технологических процессов или введении новых источников выбросов.</p>'
+        ),
+        array(
+            'question' => 'Что включает в себя программа производственного экологического контроля (ПЭК)?',
+            'answer' => '<p>ПЭК включает планы контроля за выбросами, сбросами, отходами, лабораторные исследования, инструкции и отчетность по результатам контроля.</p>'
+        ),
+        array(
+            'question' => 'Какие штрафы за отсутствие экологической документации?',
+            'answer' => '<p>Штрафы для юридических лиц могут достигать 250 000 рублей, также возможна приостановка деятельности на срок до 90 суток.</p>'
+        ),
+        array(
+            'question' => 'Как подготовиться к проверке Росприроднадзора?',
+            'answer' => '<p>Мы проводим предпроверочный аудит, помогаем собрать необходимую документацию и консультируем по процедуре взаимодействия с контролирующими органами.</p>'
+        ),
+        array(
+            'question' => 'Меняется ли законодательство в сфере экологии?',
+            'answer' => '<p>Да, законодательство регулярно обновляется. Мы отслеживаем все изменения и своевременно вносим коррективы в документацию клиентов.</p>'
+        ),
+        array(
+            'question' => 'Работаете ли вы по всей России?',
+            'answer' => '<p>Да, мы оказываем услуги по всей территории РФ. Дистанционное взаимодействие возможно для большинства видов работ.</p>'
+        ),
+        array(
+            'question' => 'Предоставляете ли консультационную поддержку после сдачи документации?',
+            'answer' => '<p>Да, мы предоставляем бесплатные консультации в течение 6 месяцев после сдачи проекта и всегда на связи по вопросам экологического сопровождения.</p>'
+        ),
+        array(
+            'question' => 'Можно ли заказать комплексное экологическое сопровождение?',
+            'answer' => '<p>Да, мы предлагаем аутсорсинг экологической службы — полное ведение экологической документации предприятия под ключ.</p>'
+        ),
+        array(
+            'question' => 'Какие виды экологической отчетности существуют?',
+            'answer' => '<p>Основные виды: отчетность по отходам (2-ТП), отчетность по выбросам (2-ТП воздух), отчетность по водопользованию (2-ТП водхоз), декларация о плате за НВОС, статистическая форма 4-ОС и другие.</p>'
+        ),
+        array(
+            'question' => 'Что такое паспорта отходов и для чего они нужны?',
+            'answer' => '<p>Паспорта отходов — документы, содержащие информацию о составе и свойствах отходов. Они обязательны для отходов I-IV классов опасности и необходимы для правильного обращения с отходами.</p>'
+        ),
+        array(
+            'question' => 'Как часто нужно проводить производственный контроль?',
+            'answer' => '<p>Периодичность контроля устанавливается программой ПЭК. Обычно лабораторные исследования проводятся ежеквартально или ежегодно в зависимости от вида воздействия.</p>'
+        ),
+        array(
+            'question' => 'Что делать при изменении технологического процесса?',
+            'answer' => '<p>При любых изменениях необходимо провести корректировку проектной документации: ПДВ, ПНООЛР, СЗЗ и других документов в течение 1-3 месяцев.</p>'
+        ),
+        array(
+            'question' => 'Нужно ли обучать сотрудников по экологической безопасности?',
+            'answer' => '<p>Да, ответственные сотрудники должны проходить обучение по программам: "Обеспечение экологической безопасности" и "Обращение с опасными отходами" не реже 1 раза в 5 лет.</p>'
+        ),
+        array(
+            'question' => 'Как рассчитать плату за негативное воздействие?',
+            'answer' => '<p>Плата рассчитывается на основе объемов выбросов, сбросов и размещения отходов с применением утвержденных ставок. Декларация подается ежегодно до 10 марта.</p>'
+        ),
+        array(
+            'question' => 'Что такое лимиты на размещение отходов?',
+            'answer' => '<p>Лимиты — максимально допустимое количество отходов, которое можно размещать на объектах хранения/захоронения. Устанавливаются в проекте ПНООЛР на 5 лет.</p>'
+        ),
+        array(
+            'question' => 'Когда требуется разработка проекта оценки воздействия на окружающую среду (ОВОС)?',
+            'answer' => '<p>ОВОС требуется при планировании строительства новых объектов, реконструкции существующих, а также для объектов, включенных в перечень, утвержденный законодательством.</p>'
+        ),
+        array(
+            'question' => 'Какие документы нужны для получения лицензии на отходы?',
+            'answer' => '<p>Для лицензии требуются: паспорта отходов, проект ПНООЛР, санитарно-эпидемиологическое заключение, документы на оборудование и транспорт, сведения о сотрудниках.</p>'
+        ),
+        array(
+            'question' => 'Что такое программа экологического мониторинга?',
+            'answer' => '<p>Программа включает регулярные наблюдения за состоянием окружающей среды в зоне влияния предприятия, лабораторные исследования, оценку эффективности природоохранных мероприятий.</p>'
+        ),
+        array(
+            'question' => 'Как часто нужно обновлять проект СЗЗ?',
+            'answer' => '<p>Проект СЗЗ разрабатывается бессрочно, но требует пересмотра при изменении технологических процессов, нормативов или расширении предприятия.</p>'
+        ),
+        array(
+            'question' => 'Что включает в себя экологический аудит?',
+            'answer' => '<p>Экоаудит включает анализ документации, обследование территории, выявление нарушений, оценку рисков и разработку рекомендаций по приведению в соответствие с требованиями.</p>'
+        ),
+        array(
+            'question' => 'Нужно ли согласовывать проектную документацию с органами власти?',
+            'answer' => '<p>Да, большинство проектов (ПДВ, СЗЗ, ПНООЛР) требуют согласования в Роспотребнадзоре, Росприроднадзоре и других уполномоченных органах.</p>'
+        ),
+        array(
+            'question' => 'Какая ответственность за нарушение экологических требований?',
+            'answer' => '<p>Ответственность может быть административной (штрафы до 250 тыс. руб.), уголовной (до 5 лет лишения свободы) и гражданско-правовой (возмещение вреда).</p>'
+        ),
+        array(
+            'question' => 'Как правильно вести журналы учета отходов?',
+            'answer' => '<p>Журналы должны заполняться ежедневно, содержать информацию о движении отходов, подписываться ответственными лицами и храниться не менее 5 лет.</p>'
+        ),
+        array(
+            'question' => 'Что такое категория объекта НВОС?',
+            'answer' => '<p>Все объекты делятся на 4 категории в зависимости от уровня воздействия. Категория определяет объем требований: от простой отчетности до комплексных проектов.</p>'
+        )
+    );
+    
+    // Сохраняем новые данные
+    carbon_set_theme_option('faq_items', $faq_data);
+    
+    // Ставим метку о выполнении
+    update_option('_faq_script_executed', true);
+    
+    // Выводим уведомление
+    add_action('admin_notices', function() {
+        echo '<div class="notice notice-success is-dismissible">';
+        echo '<p><strong>FAQ успешно обновлены!</strong> Заполнено ' . count(carbon_get_theme_option('faq_items')) . ' вопросов.</p>';
+        echo '<p>Теперь вы можете удалить этот скрипт из functions.php</p>';
+        echo '</div>';
+    });
+    
+}, 9999);
+
+// Дополнительная функция для ручного запуска очистки FAQ (если нужно)
+function clear_faq_only() {
+    carbon_set_theme_option('faq_items', array());
+    delete_option('_faq_script_executed');
+    echo '<div class="notice notice-info"><p>FAQ очищены. Теперь можно запустить скрипт заполнения заново.</p></div>';
+}
+
+// Если нужно вручную очистить FAQ, раскомментируйте эту строку:
+// add_action('admin_init', 'clear_faq_only');
+*/
+
+
+// Добавляем колонку с миниатюрой для стандартных записей (post)
+add_filter('manage_posts_columns', 'add_post_thumbnail_column');
+
+function add_post_thumbnail_column($columns)
+{
+    $new_columns = array();
+
+    foreach ($columns as $key => $title) {
+        $new_columns[$key] = $title;
+        if ($key === 'title') {
+            $new_columns['post_thumbnail'] = 'Миниатюра';
+        }
+    }
+    return $new_columns;
+}
+
+add_action('manage_posts_custom_column', 'display_post_thumbnail_column', 10, 2);
+
+function display_post_thumbnail_column($column_name, $post_id)
+{
+    if ($column_name === 'post_thumbnail') {
+        if (has_post_thumbnail($post_id)) {
+            echo get_the_post_thumbnail($post_id, array(80, 80));
+        } else {
+            echo '<div style="width:80px; height:80px; background:#f0f0f0; display:flex; align-items:center; justify-content:center; color:#999; font-size:11px; font-weight:bold; border:1px solid #ddd;">no image</div>';
+        }
+    }
+}

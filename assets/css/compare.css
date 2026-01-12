@@ -1,0 +1,475 @@
+/* competition.css - Блок сравнения с конкурентами */
+
+/* Основные стили секции */
+.section-competition {
+    padding: 80px 0;
+    background: linear-gradient(135deg, 
+        rgba(139, 197, 61, 0.05) 0%, 
+        rgba(201, 238, 2, 0.05) 25%,
+        rgba(44, 120, 32, 0.05) 50%,
+        rgba(255, 255, 1, 0.05) 75%);
+    position: relative;
+    overflow: hidden;
+}
+
+.section-competition::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 90% 10%, rgba(139, 197, 61, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 10% 90%, rgba(201, 238, 2, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Заголовок */
+.competition-title {
+    font-size: var(--font-size-xl);
+    color: var(--color-black);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    margin: 0 0 60px 0;
+    position: relative;
+    padding-bottom: 20px;
+    line-height: 1.4;
+}
+
+.competition-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 4px;
+    background: var(--gradient-eco-horizontal);
+    border-radius: 2px;
+}
+
+/* Обертка таблицы */
+.competition-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+/* Таблица */
+.competition-table {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid rgba(139, 197, 61, 0.1);
+}
+
+/* Шапка таблицы */
+.competition-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    background: linear-gradient(90deg, 
+        var(--color-eco-forest) 0%, 
+        var(--color-eco-green) 100%);
+    color: var(--color-white);
+    font-weight: var(--font-weight-semibold);
+    padding: 20px 30px;
+}
+
+.competition-header__item {
+    padding: 10px 15px;
+    text-align: center;
+    font-size: var(--font-size-large);
+}
+
+.competition-header__item:first-child {
+    text-align: left;
+}
+
+/* Строки таблицы */
+.competition-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    padding: 25px 30px;
+    align-items: center;
+    transition: all var(--transition);
+    position: relative;
+}
+
+.competition-row.even {
+    background: rgba(139, 197, 61, 0.03);
+}
+
+.competition-row.odd {
+    background: var(--color-white);
+}
+
+.competition-row:hover {
+    background: rgba(139, 197, 61, 0.07);
+    transform: translateX(5px);
+}
+
+.competition-row::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--gradient-eco-vertical);
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+.competition-row:hover::before {
+    opacity: 1;
+}
+
+/* Ячейки */
+.competition-cell {
+    padding: 15px;
+    position: relative;
+}
+
+.service-column {
+    text-align: left;
+}
+
+.service-title {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-black);
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+}
+
+/* Цены конкурентов */
+.competitor-price {
+    text-align: center;
+    color: var(--color-text-light);
+    position: relative;
+}
+
+.price-amount {
+    font-size: var(--font-size-larger);
+    font-weight: var(--font-weight-semibold);
+    display: block;
+}
+
+.price-line {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        rgba(255, 0, 0, 0.3) 0%, 
+        rgba(255, 0, 0, 0.1) 100%);
+    transform: rotate(-15deg);
+}
+
+/* Наши цены */
+.our-price {
+    text-align: center;
+    color: var(--color-eco-forest);
+    position: relative;
+}
+
+.our-price .price-amount {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+}
+
+.price-badge {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    background: var(--color-eco-vibrant);
+    color: var(--color-black);
+    font-size: var(--font-size-smaller);
+    font-weight: var(--font-weight-bold);
+    padding: 4px 8px;
+    border-radius: 12px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Экономия */
+.saving {
+    text-align: center;
+}
+
+.saving-amount {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-eco-forest);
+    display: block;
+}
+
+.saving-percent {
+    font-size: var(--font-size-large);
+    color: var(--color-eco-green);
+    font-weight: var(--font-weight-semibold);
+    display: block;
+    margin-top: 5px;
+}
+
+.saving-progress {
+    height: 8px;
+    background: rgba(139, 197, 61, 0.1);
+    border-radius: 4px;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--gradient-eco-horizontal);
+    border-radius: 4px;
+    transition: width 1s ease-out;
+}
+
+/* Футер блока */
+.competition-footer {
+    margin-top: 60px;
+    text-align: center;
+}
+
+/* CTA блок */
+.competition-cta {
+    text-align: center;
+    padding: 30px;
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(139, 197, 61, 0.2);
+}
+
+.competition-cta p {
+    margin-bottom: 20px;
+    font-size: var(--font-size-large);
+    color: var(--color-black);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Кнопка в стиле супероффера */
+.btn-competition {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 40px;
+    background: var(--gradient-eco-horizontal);
+    color: var(--color-black);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: var(--font-weight-bold);
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 8px 25px rgba(44, 120, 32, 0.3),
+        0 0 0 1px rgba(255, 255, 1, 0.2);
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Эффект свечения кнопки */
+.btn-competition::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-eco-horizontal);
+    z-index: -1;
+    filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 52px;
+}
+
+.btn-competition:hover::before {
+    opacity: 0.6;
+}
+
+/* Эффект волны при наведении */
+.btn-competition::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-competition:hover::after {
+    width: 200px;
+    height: 200px;
+}
+
+.btn-competition:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 12px 30px rgba(44, 120, 32, 0.4),
+        0 0 0 1px rgba(255, 255, 1, 0.3);
+    letter-spacing: 1.5px;
+}
+
+.btn-competition:active {
+    transform: translateY(-1px);
+    transition: all 0.1s ease;
+}
+
+/* Иконка стрелки в кнопке */
+.btn-competition i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-competition:hover i {
+    transform: translateX(5px);
+}
+
+/* Анимации для элементов */
+[data-animate] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+[data-animate].animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Анимация заголовка таблицы */
+.competition-header[data-animate] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.competition-header[data-animate].animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Анимация строк таблицы */
+.competition-row[data-animate] {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.competition-row[data-animate].animated {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Анимация CTA блока */
+.competition-cta[data-animate] {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.competition-cta[data-animate].animated {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .competition-header,
+    .competition-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 20px;
+    }
+    
+    .competition-header__item,
+    .competition-cell {
+        text-align: center !important;
+        padding: 10px;
+    }
+    
+    .service-column {
+        border-bottom: 2px solid rgba(139, 197, 61, 0.1);
+        padding-bottom: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .price-badge {
+        position: relative;
+        top: 0;
+        right: 0;
+        display: inline-block;
+        margin-top: 10px;
+    }
+    
+    .competition-footer {
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-competition {
+        padding: 60px 0;
+    }
+    
+    .competition-title {
+        font-size: var(--font-size-larger);
+        margin-bottom: 40px;
+    }
+    
+    .btn-competition {
+        padding: 14px 35px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-competition {
+        padding: 40px 0;
+    }
+    
+    .competition-title {
+        font-size: var(--font-size-large);
+        padding-bottom: 15px;
+        margin-bottom: 30px;
+    }
+    
+    .competition-title::after {
+        width: 100px;
+    }
+    
+    .competition-row {
+        padding: 15px;
+    }
+    
+    .price-amount,
+    .saving-amount {
+        font-size: var(--font-size-large);
+    }
+    
+    .btn-competition {
+        width: 100%;
+        max-width: 280px;
+        box-sizing: border-box;
+        padding: 13px 30px;
+        font-size: 1rem;
+    }
+}

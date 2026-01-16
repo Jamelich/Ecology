@@ -18,7 +18,7 @@ if (empty($logo_images)) {
         <div class="client-logos-heading" data-animate data-animate-delay="300">
             <h2 class="client-logos-title" data-animate data-animate-delay="400">Клиенты</h2>
             <p class="client-logos-subtitle" data-animate data-animate-delay="500">
-                Компании, которые доверяют нам и выбирают наше оборудование
+                Компании, которые нас выбирают и доверяют
             </p>
         </div>
 

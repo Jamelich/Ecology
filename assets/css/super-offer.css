@@ -24,14 +24,14 @@
 .super-offer-overlay {
     position: relative;
     z-index: 2;
-    background: linear-gradient(45deg, 
-        rgba(0, 0, 0, 0.88) 0%, 
-        rgba(0, 0, 0, 0.84) 100%);
+    background: linear-gradient(45deg,
+            rgba(0, 0, 0, 0.88) 0%,
+            rgba(0, 0, 0, 0.84) 100%);
 }
 
 /* Контейнер */
 .super-offer-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -55,9 +55,9 @@
     transform: translate(-50%, -50%);
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, 
-        var(--color-eco-vibrant) 0%, 
-        transparent 70%);
+    background: radial-gradient(circle,
+            var(--color-eco-vibrant) 0%,
+            transparent 70%);
     opacity: 0.03;
     z-index: 0;
     border-radius: 50%;
@@ -70,16 +70,16 @@
     right: 10%;
     width: 100px;
     height: 100px;
-    background: radial-gradient(circle, 
-        var(--color-eco-green) 0%, 
-        transparent 70%);
+    background: radial-gradient(circle,
+            var(--color-eco-green) 0%,
+            transparent 70%);
     opacity: 0.02;
     z-index: 0;
     border-radius: 50%;
 }
 
 .super-offer-text-wrapper {
-    max-width: 800px;
+    max-width: 1300px;
     width: 100%;
     color: white;
     text-align: center;
@@ -97,9 +97,9 @@
     color: var(--color-eco-vibrant);
     margin-bottom: 25px;
     padding: 10px 24px;
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 1, 0.1) 0%, 
-        rgba(139, 197, 61, 0.1) 100%);
+    background: linear-gradient(135deg,
+            rgba(255, 255, 1, 0.1) 0%,
+            rgba(139, 197, 61, 0.1) 100%);
     border-radius: 50px;
     border: 1px solid rgba(255, 255, 1, 0.2);
     position: relative;
@@ -122,10 +122,10 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(255, 255, 1, 0.2), 
-        transparent);
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 1, 0.2),
+            transparent);
     transition: left 0.6s ease;
 }
 
@@ -139,11 +139,11 @@
     font-weight: var(--font-weight-bold);
     line-height: 1.2;
     margin: 0 0 25px 0;
-    background: linear-gradient(135deg, 
-        var(--color-white) 0%,
-        var(--color-eco-vibrant) 30%,
-        var(--color-eco-fresh) 50%,
-        var(--color-white) 100%);
+    background: linear-gradient(135deg,
+            var(--color-white) 0%,
+            var(--color-eco-vibrant) 30%,
+            var(--color-eco-fresh) 50%,
+            var(--color-white) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -183,189 +183,261 @@
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(180deg); }
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(180deg);
+    }
 }
 
-/* Описание */
-.super-offer-description {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.92);
-    margin-bottom: 35px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+/* Таблица сроков отчетности - ДЕСКТОПНАЯ ВЕРСИЯ */
+.super-offer-table {
+    width: 100%;
+    margin: 30px 0 35px 0;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
 }
 
-.super-offer-description.animated {
-    opacity: 1;
-    transform: translateY(0);
+/* Заголовок таблицы */
+.super-offer-table thead {
+    background: var(--gradient-eco-horizontal);
 }
 
-.super-offer-description p {
-    margin: 0 0 15px 0;
-}
-
-.super-offer-description p:last-child {
-    margin-bottom: 0;
-}
-
-.super-offer-description strong {
-    color: var(--color-eco-vibrant);
-    background: linear-gradient(120deg, 
-        rgba(255, 255, 1, 0.1) 0%, 
-        transparent 50%);
-    padding: 2px 4px;
-    border-radius: 3px;
-    font-weight: var(--font-weight-semibold);
-}
-
-.super-offer-description em {
-    color: var(--color-eco-fresh);
-    font-style: italic;
-}
-
-/* Стили для списков как в about-company */
-.super-offer-description ul {
-    margin: 20px 0;
-    padding-left: 0;
-    list-style: none;
-    display: inline-block;
-    text-align: left;
-}
-
-.super-offer-description ul li {
-    position: relative;
-    margin-bottom: 10px;
-    padding-left: 30px;
-    color: rgba(255, 255, 255, 0.88);
-}
-
-/* Кастомные маркеры для списков как в about-company */
-.super-offer-description ul li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 7px;
-    width: 16px;
-    height: 16px;
-    background: var(--gradient-eco-vertical);
-    border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(139, 197, 61, 0.3);
-}
-
-/* Галочка внутри кружка */
-.super-offer-description ul li::after {
-    content: '✓';
-    position: absolute;
-    left: 4px;
-    top: 7px;
-    font-size: 10px;
-    color: var(--color-white);
+.super-offer-table th {
+    padding: 16px 15px;
+    text-align: center;
     font-weight: var(--font-weight-bold);
+    color: var(--color-black);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    vertical-align: middle;
 }
 
-/* Ссылка/Кнопка в эко-стиле */
-.super-offer-action {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-    margin-top: 40px;
+/* Ширины колонок */
+.super-offer-table th:nth-child(1) {
+    width: 15%;
 }
 
-.super-offer-action.animated {
-    opacity: 1;
-    transform: translateY(0);
+/* Дата */
+.super-offer-table th:nth-child(2) {
+    width: 50%;
 }
 
-.super-offer-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 16px 40px;
+/* Наименование */
+.super-offer-table th:nth-child(3) {
+    width: 20%;
+}
+
+/* Таймер */
+.super-offer-table th:nth-child(4) {
+    width: 15%;
+}
+
+/* Стоимость */
+
+/* Строки таблицы */
+.super-offer-table tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.super-offer-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.super-offer-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.super-offer-table td {
+    padding: 14px 15px;
+    text-align: center;
+    vertical-align: middle;
+    /* Изменено с top на middle */
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+/* Стили для ячейки с датой */
+.super-offer-table td:nth-child(1) {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-eco-fresh);
+    position: relative;
+}
+
+/* Стили для ячейки с наименованием */
+.super-offer-table td:nth-child(2) {
+    text-align: left;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.88rem;
+    vertical-align: middle;
+    /* Добавлено */
+}
+
+/* Стили для ячейки с таймером */
+.super-offer-table td:nth-child(3) {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-eco-vibrant);
+    font-size: 0.9rem;
+    vertical-align: middle;
+    /* Добавлено */
+}
+
+/* Стили для ячейки со стоимостью */
+.super-offer-table td:nth-child(4) {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-eco-fresh);
+    font-size: 0.95rem;
+    vertical-align: middle;
+    /* Добавлено */
+}
+
+/* Стили для кнопки в ячейке стоимости */
+.price-button {
+    display: inline-block;
+    padding: 8px 16px;
     background: var(--gradient-eco-horizontal);
     color: var(--color-black);
     text-decoration: none;
-    font-size: 1.1rem;
     font-weight: var(--font-weight-bold);
-    border-radius: 50px;
-    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-    position: relative;
-    overflow: hidden;
-    box-shadow: 
-        0 8px 25px rgba(44, 120, 32, 0.3),
-        0 0 0 1px rgba(255, 255, 1, 0.2);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
     border: none;
     cursor: pointer;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(44, 120, 32, 0.2);
+}
+
+.price-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(44, 120, 32, 0.3);
+}
+
+/* Подсветка важных сроков */
+.super-offer-table tr.urgent td:nth-child(1) {
+    color: #ff6b6b;
+    font-weight: var(--font-weight-bold);
+}
+
+/* МОБИЛЬНАЯ ВЕРСИЯ - КАРТОЧКИ ВМЕСТО ТАБЛИЦЫ */
+.super-offer-table-mobile {
+    display: none;
+    margin: 30px 0 35px 0;
+}
+
+.super-offer-card {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.super-offer-card:last-child {
+    margin-bottom: 0;
+}
+
+.super-offer-card-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.super-offer-card-row:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.super-offer-card-label {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-eco-vibrant);
+    text-transform: uppercase;
+    font-size: 0.85rem;
     letter-spacing: 1px;
+    flex: 0 0 40%;
+    margin-right: 15px;
 }
 
-/* Эффект свечения кнопки */
-.super-offer-link::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: var(--gradient-eco-horizontal);
-    z-index: -1;
-    filter: blur(10px);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 52px;
+.super-offer-card-value {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 0.9rem;
+    flex: 1;
+    text-align: right;
 }
 
-.super-offer-link:hover::before {
-    opacity: 0.6;
+.super-offer-card-value.date {
+    color: var(--color-eco-fresh);
+    font-weight: var(--font-weight-bold);
 }
 
-/* Эффект волны при наведении */
-.super-offer-link::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
+.super-offer-card-value.timer {
+    color: var(--color-eco-vibrant);
+    font-weight: var(--font-weight-semibold);
 }
 
-.super-offer-link:hover::after {
-    width: 200px;
-    height: 200px;
+.super-offer-card-value.name {
+    text-align: left;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.88rem;
 }
 
-.super-offer-link:hover {
-    transform: translateY(-3px);
-    box-shadow: 
-        0 12px 30px rgba(44, 120, 32, 0.4),
-        0 0 0 1px rgba(255, 255, 1, 0.3);
-    letter-spacing: 1.5px;
+.super-offer-card-row.name-row {
+    align-items: flex-start;
 }
 
-.super-offer-link:active {
-    transform: translateY(-1px);
-    transition: all 0.1s ease;
-}
-
-/* Иконка стрелки в кнопке */
-.super-offer-link i {
-    font-size: 1.2rem;
-    transition: transform 0.3s ease;
-}
-
-.super-offer-link:hover i {
-    transform: translateX(5px);
+.super-offer-card-value.price {
+    color: var(--color-eco-fresh);
+    font-weight: var(--font-weight-bold);
 }
 
 /* Адаптивность */
+@media (max-width: 1200px) {
+    .super-offer-container {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+
+    .super-offer-text-wrapper {
+        max-width: 100%;
+    }
+
+    .super-offer-table th:nth-child(1) {
+        width: 15%;
+    }
+
+    .super-offer-table th:nth-child(2) {
+        width: 45%;
+    }
+
+    .super-offer-table th:nth-child(3) {
+        width: 20%;
+    }
+
+    .super-offer-table th:nth-child(4) {
+        width: 20%;
+    }
+}
+
 @media (max-width: 1024px) {
     .super-offer-section {
         padding: 70px 0;
@@ -379,14 +451,65 @@
     .super-offer-title {
         font-size: 2.5rem;
     }
-    
+
     .super-offer-title::before,
     .super-offer-title::after {
         display: none;
     }
+
+    .super-offer-table {
+        margin: 25px 0 30px 0;
+    }
+
+    .super-offer-table th,
+    .super-offer-table td {
+        padding: 12px 10px;
+        font-size: 0.85rem;
+    }
+
+    .super-offer-table th:nth-child(1) {
+        width: 15%;
+    }
+
+    .super-offer-table th:nth-child(2) {
+        width: 40%;
+    }
+
+    .super-offer-table th:nth-child(3) {
+        width: 25%;
+    }
+
+    .super-offer-table th:nth-child(4) {
+        width: 20%;
+    }
 }
 
+/* ПЛАНШЕТНАЯ ВЕРСИЯ */
 @media (max-width: 768px) {
+
+    .super-offer-card-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .super-offer-card-label {
+        margin-right: 0;
+    }
+
+    .super-offer-title {
+        font-size: 1.5rem;
+        margin-bottom: 40px;
+    }
+
+    .super-offer-title,
+    .super-offer-subheader {
+        opacity: 1;
+    }
+
+    #super-offer .callback-btn {
+        width: 100%;
+    }
+
     .super-offer-section {
         padding: 60px 0;
     }
@@ -394,33 +517,69 @@
     .super-offer-content {
         padding: 60px 0;
         min-height: 300px;
+        display: block;
+        /* Изменено с flex на block */
+        align-items: normal;
+        /* Убрано выравнивание по центру */
     }
 
     .super-offer-title {
-        font-size: 2.2rem;
-        margin-bottom: 20px;
+        /* font-size: 2.2rem; */
+        /* margin-bottom: 20px; */
+        word-break: break-word;
+        /* Добавлено для переноса длинных слов */
     }
 
-    .super-offer-description {
-        font-size: 1.1rem;
-        margin-bottom: 30px;
+    .super-offer-subheader {
+        margin-top: 15px;
+        /* Добавлено для отступа сверху */
+        margin-bottom: 15px;
+        word-break: break-word;
+        /* Добавлено для переноса длинных слов */
     }
 
-    .super-offer-link {
-        padding: 14px 35px;
-        font-size: 1.1rem;
+    /* Скрываем таблицу для десктопа, показываем мобильную версию */
+    .super-offer-table {
+        display: none;
     }
 
-    .super-offer-action {
-        margin-top: 35px;
+    .super-offer-table-mobile {
+        display: block;
+        margin: 20px 0 25px 0;
     }
-    
+
+    .price-button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
     .super-offer-content::before,
     .super-offer-content::after {
         display: none;
     }
+
+    /* Исправление для наименования в карточке */
+    .super-offer-card-row.name-row {
+        flex-direction: column;
+        /* Изменено на колонку */
+        align-items: flex-start;
+    }
+
+    .super-offer-card-label {
+        flex: none;
+        margin-bottom: 5px;
+        /* Добавлен отступ между заголовком и текстом */
+        width: 100%;
+    }
+
+    .super-offer-card-value.name {
+        text-align: left;
+        width: 100%;
+        margin-top: 5px;
+    }
 }
 
+/* МОБИЛЬНАЯ ВЕРСИЯ */
 @media (max-width: 480px) {
     .super-offer-section {
         padding: 50px 0;
@@ -428,34 +587,61 @@
 
     .super-offer-content {
         padding: 50px 0;
-        min-height: 250px;
+        min-height: auto;
+        /* Изменено с фиксированной высоты на auto */
     }
 
     .super-offer-title {
-        font-size: 1.9rem;
-    }
-
-    .super-offer-description {
-        font-size: 1rem;
-        line-height: 1.5;
+        /* font-size: 1.9rem; */
+        line-height: 1.3;
+        /* Улучшено для мобильных */
+        /* margin-bottom: 15px; */
     }
 
     .super-offer-subheader {
         font-size: 12px;
         letter-spacing: 2px;
         padding: 8px 20px;
+        margin-bottom: 15px;
     }
 
-    .super-offer-link {
-        padding: 13px 30px;
-        font-size: 1rem;
-        width: 100%;
-        max-width: 280px;
-        box-sizing: border-box;
+    .super-offer-table-mobile {
+        margin: 15px 0 20px 0;
     }
 
-    .super-offer-action {
-        margin-top: 30px;
+    .super-offer-card {
+        padding: 15px;
+    }
+
+    .super-offer-card-row {
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+    }
+
+    .super-offer-card-label {
+        font-size: 0.8rem;
+        flex: 0 0 45%;
+    }
+
+    .super-offer-card-value {
+        font-size: 0.85rem;
+    }
+
+    .super-offer-card-value.name {
+        font-size: 0.85rem;
+    }
+
+    .price-button {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+    }
+
+    /* ИСПРАВЛЕНИЕ: убраны стили, которые обрезали таймер */
+    .super-offer-card-value.timer {
+        /* Убраны: white-space: nowrap; overflow: hidden; text-overflow: ellipsis; */
+        /* Добавлено: нормальное отображение с переносом при необходимости */
+        word-break: break-word;
+        white-space: normal;
     }
 }
 
@@ -466,39 +652,67 @@
 
     .super-offer-content {
         padding: 40px 0;
-        min-height: 220px;
+        min-height: auto;
     }
 
     .super-offer-title {
-        font-size: 1.7rem;
+        line-height: 1.3;
     }
 
-    .super-offer-description {
-        font-size: 0.95rem;
+    .super-offer-card {
+        padding: 12px;
     }
 
-    .super-offer-link {
-        padding: 12px 25px;
-        font-size: 0.95rem;
+    .super-offer-card-row {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+
+    .super-offer-card-label {
+        font-size: 0.75rem;
+        flex: 0 0 50%;
+    }
+
+    .super-offer-card-value {
+        font-size: 0.8rem;
+    }
+
+    .super-offer-card-value.name {
+        font-size: 0.8rem;
+    }
+
+    .price-button {
+        padding: 4px 8px;
+        font-size: 0.7rem;
     }
 }
 
 /* Темная тема */
 @media (prefers-color-scheme: dark) {
     .super-offer-overlay {
-        background: linear-gradient(45deg, 
-            rgba(0, 0, 0, 0.9) 0%, 
-            rgba(0, 0, 0, 0.88) 100%);
+        background: linear-gradient(45deg,
+                rgba(0, 0, 0, 0.9) 0%,
+                rgba(0, 0, 0, 0.88) 100%);
     }
-    
-    .super-offer-description {
+
+    .super-offer-table {
+        background: rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .super-offer-card {
+        background: rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .super-offer-table td {
         color: rgba(255, 255, 255, 0.94);
     }
-    
-    .super-offer-description ul li {
+
+    .super-offer-table td:nth-child(2) {
         color: rgba(255, 255, 255, 0.9);
     }
-    
+
     .super-offer-content::before {
         opacity: 0.04;
     }

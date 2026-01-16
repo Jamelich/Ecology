@@ -27,6 +27,7 @@
     width: 90%;
     text-align: center;
     line-height: 1.5;
+    max-width: 800px;
 }
 
 /* Фоновая текстура */
@@ -367,6 +368,7 @@
 .about-company-slider.single-image .banner-image-wrapper {
     position: relative;
     width: 100%;
+    text-align: center;
 }
 
 /* Градиентная рамка и тень ТОЛЬКО на самой картинке */

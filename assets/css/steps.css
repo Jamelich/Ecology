@@ -77,16 +77,22 @@
 }
 
 /* Распределение карточек:
-   Блоки 1-3: по 2 колонки из 6 (33.3%)
-   Блоки 4-5: по 3 колонки из 6 (50%) */
+   1-я строка: блоки 1-2 по 50% (span 3)
+   2-я строка: блоки 3-5 по 33% (span 2)
+   3-я строка: блоки 6-7 по 50% (span 3) */
 .eco-step-card:nth-child(1),
-.eco-step-card:nth-child(2),
-.eco-step-card:nth-child(3) {
+.eco-step-card:nth-child(2) {
+    grid-column: span 3; /* 3/6 = 50% */
+}
+
+.eco-step-card:nth-child(3),
+.eco-step-card:nth-child(4),
+.eco-step-card:nth-child(5) {
     grid-column: span 2; /* 2/6 = 33.3% */
 }
 
-.eco-step-card:nth-child(4),
-.eco-step-card:nth-child(5) {
+.eco-step-card:nth-child(6),
+.eco-step-card:nth-child(7) {
     grid-column: span 3; /* 3/6 = 50% */
 }
 
@@ -190,7 +196,9 @@
     .eco-step-card:nth-child(2),
     .eco-step-card:nth-child(3),
     .eco-step-card:nth-child(4),
-    .eco-step-card:nth-child(5) {
+    .eco-step-card:nth-child(5),
+    .eco-step-card:nth-child(6),
+    .eco-step-card:nth-child(7) {
         grid-column: span 1; /* Все по 1 колонке из 2 (50%) */
     }
     
@@ -221,7 +229,9 @@
     .eco-step-card:nth-child(2),
     .eco-step-card:nth-child(3),
     .eco-step-card:nth-child(4),
-    .eco-step-card:nth-child(5) {
+    .eco-step-card:nth-child(5),
+    .eco-step-card:nth-child(6),
+    .eco-step-card:nth-child(7) {
         grid-column: span 1; /* Все по 1 колонке (100%) */
     }
     

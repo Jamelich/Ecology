@@ -4,6 +4,9 @@
         <!-- Заголовок -->
         <div class="simple-map-heading" data-animate data-animate-delay="100">
             <h2>Работаем по всей России</h2>
+            <p class="client-logos-subtitle" data-animate data-animate-delay="150">
+                Наши партнеры есть в каждом регионе
+            </p>
             <div class="simple-map-line"></div>
         </div>
 

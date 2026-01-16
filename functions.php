@@ -39,6 +39,8 @@ function esa_add_style()
     wp_enqueue_script('swiper', get_stylesheet_directory_uri() . '/assets/js/swiper-bundle.min.js', array());
     wp_enqueue_script('swiper-init', get_stylesheet_directory_uri() . '/assets/js/swiper-init.js', array(), '1.0.5');
     wp_enqueue_script('keys', get_stylesheet_directory_uri() . '/assets/js/keys.js', array(), '1.0.5');
+    wp_enqueue_script('menu', get_stylesheet_directory_uri() . '/assets/js/menu.js', array(), '1.0.6');
+    wp_enqueue_script('super-offer', get_stylesheet_directory_uri() . '/assets/js/super-offer.js', array(), '1.0.5');
 }
 
 // Поддержка миниатюр
@@ -63,7 +65,7 @@ function esa_register_menus()
 add_action('after_setup_theme', 'esa_register_menus');
 
 require_once(__DIR__ . '/inc/esa-functions.php');
-// require_once(__DIR__ . '/inc/import2.php');
+// require_once(__DIR__ . '/inc/import_crb.php');
 
 add_action('wp_ajax_keyses_load_more_posts', 'keyses_load_more_posts_handler');
 add_action('wp_ajax_nopriv_keyses_load_more_posts', 'keyses_load_more_posts_handler');

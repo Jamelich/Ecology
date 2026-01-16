@@ -12,89 +12,42 @@
         </div>
         
         <div class="promotions-grid">
-            <!-- Акция 1 -->
-            <div class="promotion-card" data-animate="fadeInUp" data-animate-delay="150">
-                <div class="promotion-card__inner">
-                    <div class="promotion-card__header">
-                        <h3 class="promotion-card__title">Экологический мини-аудит</h3>
-                    </div>
-                    <div class="promotion-card__content">
-                        <p class="promotion-card__description">
-                            Бесплатно проанализируем деятельность предприятия и дадим рекомендации 
-                            по пакету необходимых документов в части экологии
-                        </p>
-                        <div class="promotion-card__discount">Бесплатно</div>
-                    </div>
-                    <div class="promotion-card__footer">
-                        <a href="#" class="promotion-card__button btn callback-btn">Получить аудит</a>
-                    </div>
-                </div>
-                <div class="promotion-card__decor decor-1"></div>
-            </div>
+            <?php
+            // Получаем акции из Carbon Fields
+            $promotions = carbon_get_theme_option( 'promotions' );
+            $delay = 150; // начальная задержка для анимации
             
-            <!-- Акция 2 -->
-            <div class="promotion-card" data-animate="fadeInUp" data-animate-delay="300">
-                <div class="promotion-card__inner">
-                    <div class="promotion-card__header">
-                        <h3 class="promotion-card__title">Скидка на проектные работы</h3>
+            if ( $promotions && is_array( $promotions ) ) :
+                $counter = 0;
+                foreach ( $promotions as $promotion ) :
+                    $counter++;
+                    ?>
+                    <!-- Акция <?php echo $counter; ?> -->
+                    <div class="promotion-card" data-animate="fadeInUp" data-animate-delay="<?php echo $delay; ?>">
+                        <div class="promotion-card__inner">
+                            <div class="promotion-card__header">
+                                <h3 class="promotion-card__title"><?php echo esc_html( $promotion['title'] ); ?></h3>
+                            </div>
+                            <div class="promotion-card__content">
+                                <p class="promotion-card__description">
+                                    <?php echo esc_html( $promotion['description'] ); ?>
+                                </p>
+                                <div class="promotion-card__discount"><?php echo esc_html( $promotion['discount'] ); ?></div>
+                            </div>
+                            <div class="promotion-card__footer">
+                                <a href="<?php echo esc_url( $promotion['button_link'] ); ?>" 
+                                   class="promotion-card__button btn callback-btn">
+                                    <?php echo esc_html( $promotion['button_text'] ); ?>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="promotion-card__decor decor-<?php echo $counter; ?>"></div>
                     </div>
-                    <div class="promotion-card__content">
-                        <p class="promotion-card__description">
-                            При заказе экологической отчетности делаем скидку 
-                            на проектные работы до 15%
-                        </p>
-                        <div class="promotion-card__discount">-15%</div>
-                    </div>
-                    <div class="promotion-card__footer">
-                        <a href="#" class="promotion-card__button btn callback-btn">Узнать условия</a>
-                    </div>
-                </div>
-                <div class="promotion-card__decor decor-2"></div>
-            </div>
-            
-            <!-- Акция 3 -->
-            <div class="promotion-card" data-animate="fadeInUp" data-animate-delay="450">
-                <div class="promotion-card__inner">
-                    <div class="promotion-card__header">
-                        <h3 class="promotion-card__title">Партнерская программа</h3>
-                    </div>
-                    <div class="promotion-card__content">
-                        <p class="promotion-card__description">
-                            Мы платим за рекомендации! Приведите клиента и получите 
-                            вознаграждение до 10% от суммы контракта
-                        </p>
-                        <div class="promotion-card__discount">До 10%</div>
-                    </div>
-                    <div class="promotion-card__footer">
-                        <a href="#" 
-                           target="_blank" 
-                           class="promotion-card__button btn callback-btn">
-                            Стать партнером
-                        </a>
-                    </div>
-                </div>
-                <div class="promotion-card__decor decor-3"></div>
-            </div>
-            
-            <!-- Акция 4 -->
-            <div class="promotion-card" data-animate="fadeInUp" data-animate-delay="600">
-                <div class="promotion-card__inner">
-                    <div class="promotion-card__header">
-                        <h3 class="promotion-card__title">Постоянным клиентам</h3>
-                    </div>
-                    <div class="promotion-card__content">
-                        <p class="promotion-card__description">
-                            Для наших постоянных клиентов предусмотрена 
-                            накопительная система скидок до 10%
-                        </p>
-                        <div class="promotion-card__discount">-10%</div>
-                    </div>
-                    <div class="promotion-card__footer">
-                        <a href="#contact-form" class="promotion-card__button btn callback-btn">Узнать свою скидку</a>
-                    </div>
-                </div>
-                <div class="promotion-card__decor decor-4"></div>
-            </div>
+                    <?php
+                    $delay += 150; // увеличиваем задержку для следующей карточки
+                endforeach;
+            endif;
+            ?>
         </div>
     </div>
 </section>
